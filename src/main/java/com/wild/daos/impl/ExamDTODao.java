@@ -13,6 +13,7 @@ public class ExamDTODao extends AbstractDAO<ExamDTO> implements IExamDTO{
 //	FROM exam e, grade g, subject s,sub_g_s sgs 
 //	WHERE g.idgrade=sgs.idgrade AND s.idsubject=sgs.idsubject AND e.idsubject = s.idsubject 
 //	Group BY e.idexam ORDER BY e.modifieddate DESC
+	//CALL findExamsDTOAll()
 	@Override
 	public List<ExamDTO> findExamsDTOAll() {
 		String sql = "CALL findExamsDTOAll()";
