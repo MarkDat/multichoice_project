@@ -19,10 +19,37 @@
 </head>
 <body id="page-top">
 
-	<%@ include file="/common/admin/header.jsp" %>
+	<%@ include file="/common/admin/header.jsp"%>
 
-	<dec:body/>
-	
+	<div id="wrapper">
+
+		<%@ include file="/common/admin/sidebarLeft.jsp"%>
+
+
+		<div id="content-wrapper">
+			<div class="container-fluid">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+					<li class="breadcrumb-item active">Tables</li>
+				</ol>
+
+				<!-- Content are here -->
+				<dec:body />
+				<!-- Content are here -->
+
+				<p class="small text-center text-muted my-5">
+					<em>More table examples coming soon...</em>
+				</p>
+			</div>
+			<!-- /.container-fluid -->
+			
+			<!--Footer -->
+			<%@ include file="/common/admin/footer.jsp"%>
+			<!--Footer -->
+
+		</div>
+
+	</div>
 	<!-- Bootstrap core JavaScript-->
 	<script src="<c:url value='/template/admin/vendor/jquery/jquery.min.js'/>"></script>
 	<script src="<c:url value='/template/admin/vendor/bootstrap/js/bootstrap.bundle.min.js'/>"></script>
