@@ -42,4 +42,14 @@ public class HomeController {
 //		System.out.println("OK add ? "+ex.addNewExam(objEx));
 		return mav;
 	}
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public ModelAndView loginPage() {
+		ModelAndView mav = new ModelAndView("pages_other/login");
+		return mav;
+	}
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public ModelAndView registerPage() {
+		ModelAndView mav = new ModelAndView("pages_other/register");
+		return mav;
+	}
 }

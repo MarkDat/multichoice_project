@@ -15,6 +15,18 @@
 	<div class="col-lg-9">
 		<div class="row row-eq-heights">
 			<!-- run FOR for display subject-->
+			<c:forEach items="${allFestivals}" var="festival">
+				<div class="col-6 col-lg-4">
+					<div class="card p-2 mb-3">
+						<img style="height: 250px"
+							src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeE6INyYxE2hGp8dnGVFnWAeytPy7ls_u5nQ&usqp=CAU"
+							class="card-img-top" />
+						<div class="card-body">
+							<h6 class="card-text text-center">Vật Lý</h6>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
 			<div class="col-6 col-lg-4">
 				<div class="card p-2 mb-3">
 					<img style="height: 250px"

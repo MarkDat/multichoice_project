@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Login</title>
+<title>Register</title>
 <!-- Bootstrap core CSS -->
 <link
 	href="<c:url value='/template/web/vendor/bootstrap/css/bootstrap.min.css'/>"
@@ -17,7 +17,7 @@
 
 <body>
 	<section class="Form my-4 mx-5">
-		<div class="container h-100">
+		<div class="container">
 			<div class="row no-gutters bg-white">
 				<div class="col-lg-5">
 					<img
@@ -27,30 +27,44 @@
 
 				<div class="col-lg-7 px-5 pt-5">
 					<h1 class="font-weight-bold py-3">MCWA</h1>
-					<h4>Sign into your account</h4>
+					<h4>Quick and easy!</h4>
 					<form>
 						<div class="form-row">
-							<div class="col-lg-7">
+							<div class="col-lg-6">
+								<input type="text" placeholder="First Name"
+									class="form-control my-3 p-4" />
+							</div>
+							<div class="col-lg-6">
+								<input type="text" placeholder="Last Name"
+									class="form-control my-3 p-4" />
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col-lg-12">
 								<input type="email" placeholder="Email"
 									class="form-control my-3 p-4" />
 							</div>
 						</div>
 						<div class="form-row">
-							<div class="col-lg-7">
+							<div class="col-lg-6">
 								<input type="password" placeholder="Password"
+									class="form-control my-3 p-4" />
+							</div>
+							<div class="col-lg-6">
+								<input type="password" placeholder="Confirm Password"
 									class="form-control my-3 p-4" />
 							</div>
 						</div>
 						<div class="form-row">
-							<div class="col-lg-7">
+							<div class="col-lg-6">
 								<button type="button"
-									class="btn btn-lg btn-dark w-100 font-weight-bold rounded mt-3 mb-5">
-									Login</button>
+									class="btn btn-lg btn-dark w-100 font-weight-bold rounded my-3">
+									Register</button>
 							</div>
 						</div>
 						<a href="#">Forgot password</a>
 						<p>
-							Don't have an account? <a href="/multichoice_project/register">Register here</a>
+							Do you already have an account?<a href="/multichoice_project/login"> Login here</a>
 						</p>
 					</form>
 				</div>
