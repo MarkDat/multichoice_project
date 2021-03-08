@@ -6,7 +6,7 @@
 		<i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
 	</a></li>
 
-	<li class="nav-item"><a class="nav-link" href="<c:url value='/admin/table' />" >
+	<li class="nav-item"><a class="nav-link" href="<c:url value='/admin/tableExamList' />" >
 			<i class="fas fa-fw fa-table"></i> <span>Tables</span>
 	</a></li>
 </ul>

@@ -15,7 +15,7 @@ public class ExamDTODao extends AbstractDAO<ExamDTO> implements IExamDTO{
 //	Group BY e.idexam ORDER BY e.modifieddate DESC
 	@Override
 	public List<ExamDTO> findExamsDTOAll() {
-		String sql = "SELECT * FROM `exam`";
+		String sql = "CALL findExamsDTOAll()";
 		return query(sql,new ExamDTOMapper());
 	}
 
