@@ -29,24 +29,26 @@ public class HomeController {
 		QuestionDao qs = new QuestionDao();
 		ExamDTODao exd = new ExamDTODao();
 		ExamDao ex = new ExamDao();
+		// List<Grade> grades = a.getAll();
+		// List<Question> q = qs.findListQuesByIdExam(1L);
+		// List<Exam> q = ex.findExamsBySubjectId(4L);
+
 		SubjectDao sd = new SubjectDao();
-		//List<Grade> grades = a.getAll();
-		//List<Question> q = qs.findListQuesByIdExam(1L);
-		//List<Exam> q = ex.findExamsBySubjectId(4L);
-		
-		for (Subject q : sd.findSubjectsByIdGrade(1L)) {
-			System.out.println(q.getNameSubject());
-		}
-		
+		List<Subject> listSup = sd.findAll();
+
+		mav.addObject("listSup", listSup);
+
 //		Exam objEx = new Exam(null, 3L, "Đề thi hóa phần hữu cơ");
 //		System.out.println("OK add ? "+ex.addNewExam(objEx));
 		return mav;
 	}
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView loginPage() {
 		ModelAndView mav = new ModelAndView("pages_other/login");
 		return mav;
 	}
+
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public ModelAndView registerPage() {
 		ModelAndView mav = new ModelAndView("pages_other/register");

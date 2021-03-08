@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
 <!-- Header -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 	<div class="container">
@@ -24,7 +24,16 @@
 			</ul>
 			<!-- List menu -->
 
-			<!-- Button login logout -->
+			<!-- Button login signin -->
+			<div class="mx-2">
+				<button type="button" class="btn btn-outline-secondary">
+					Log in</button>
+				<button type="button" class="btn btn-outline-secondary">
+					Sign in</button>
+			</div class="mx-2">
+			<!-- Button login signin -->
+
+			<!-- Button logout -->
 			<div>
 				<div class="btn-group">
 					<button type="button"
@@ -40,9 +49,9 @@
 					</div>
 				</div>
 				<button type="button" class="btn btn-outline-secondary">
-					Login</button>
+					Log out</button>
 			</div>
-			<!-- Button login logout -->
+			<!-- Button logout -->
 		</div>
 	</div>
 </nav>
