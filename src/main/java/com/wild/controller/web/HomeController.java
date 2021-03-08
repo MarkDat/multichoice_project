@@ -43,6 +43,7 @@ public class HomeController {
 		for (RankUser q : rud.findAll()) {
 			System.out.println(q.getName()+" "+q.getTotalMark());
 		}
+		
 
 		List<Subject> listSup = sd.findAll();
 
