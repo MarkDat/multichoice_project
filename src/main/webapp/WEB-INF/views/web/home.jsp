@@ -8,93 +8,57 @@
 
 <meta charset="UTF-8">
 <title>Trang chủ</title>
-
 </head>
 
 <body>
-
-	<!-- Page Content -->
-	<div class="container">
-
-		<!-- Heading Row -->
-		<div class="row align-items-center my-5">
-			<div class="col-lg-7">
-				<img class="img-fluid rounded mb-4 mb-lg-0"
-					src="http://placehold.it/900x400" alt="">
-			</div>
-			<!-- /.col-lg-8 -->
-			<div class="col-lg-5">
-				<h1 class="font-weight-light">Business Name or Tagline</h1>
-				<p>This is a template that is great for small businesses. It
-					doesn't have too much fancy flare to it, but it makes a great use
-					of the standard Bootstrap core components. Feel free to use this
-					template for any project you want!</p>
-				<a class="btn btn-primary" href="#">Call to Action!</a>
-			</div>
-			<!-- /.col-md-4 -->
-		</div>
-		<!-- /.row -->
-
-		<!-- Call to Action Well -->
-		<div class="card text-white bg-secondary my-5 py-4 text-center">
-			<div class="card-body">
-				<p class="text-white m-0">This call to action card is a great
-					place to showcase some important information or display a clever
-					tagline!</p>
-			</div>
-		</div>
-
-		<!-- Content Row -->
-		<div class="row">
-			<div class="col-md-4 mb-5">
-				<div class="card h-100">
+	<!-- Content -->
+	<div class="col-lg-9">
+		<div class="row row-eq-heights">
+			<!-- run FOR for display subject-->
+			<div class="col-6 col-lg-4">
+				<div class="card p-2 mb-3">
+					<img style="height: 250px"
+						src="https://www.sciencefriday.com/wp-content/uploads/2016/08/Artboard-1.png"
+						class="card-img-top" />
 					<div class="card-body">
-						<h2 class="card-title">Card One</h2>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit. Rem magni quas ex numquam, maxime minus quam
-							molestias corporis quod, ea minima accusamus.</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary btn-sm">More Info</a>
+						<h6 class="card-text text-center">Toán Học</h6>
 					</div>
 				</div>
 			</div>
-			<!-- /.col-md-4 -->
-			<div class="col-md-4 mb-5">
-				<div class="card h-100">
+			<div class="col-6 col-lg-4">
+				<div class="card p-2 mb-3">
+					<img style="height: 250px"
+						src="https://i.pinimg.com/originals/22/72/2b/22722b33f4d7e9d810c6bce2fe678128.jpg"
+						class="card-img-top" />
 					<div class="card-body">
-						<h2 class="card-title">Card Two</h2>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit. Quod tenetur ex natus at dolorem enim! Nesciunt
-							pariatur voluptatem sunt quam eaque, vel, non in id dolore
-							voluptates quos eligendi labore.</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary btn-sm">More Info</a>
+						<h6 class="card-text text-center">Hóa Học</h6>
 					</div>
 				</div>
 			</div>
-			<!-- /.col-md-4 -->
-			<div class="col-md-4 mb-5">
-				<div class="card h-100">
+			<div class="col-6 col-lg-4">
+				<div class="card p-2 mb-3">
+					<img style="height: 250px"
+						src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRElITVeP6VI3F_hTKVUA1c8_GpIORDGsaJYw&usqp=CAUs"
+						class="card-img-top" />
 					<div class="card-body">
-						<h2 class="card-title">Card Three</h2>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit. Rem magni quas ex numquam, maxime minus quam
-							molestias corporis quod, ea minima accusamus.</p>
-					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary btn-sm">More Info</a>
+						<h6 class="card-text text-center">Sinh Học</h6>
 					</div>
 				</div>
 			</div>
-			<!-- /.col-md-4 -->
-
+			<div class="col-6 col-lg-4">
+				<div class="card p-2 mb-3">
+					<img style="height: 250px"
+						src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeE6INyYxE2hGp8dnGVFnWAeytPy7ls_u5nQ&usqp=CAU"
+						class="card-img-top" />
+					<div class="card-body">
+						<h6 class="card-text text-center">Vật Lý</h6>
+					</div>
+				</div>
+			</div>
+			<!-- End run FOR -->
 		</div>
-		<!-- /.row -->
-
 	</div>
-	<!-- /.container -->
+	<!-- Content -->
 
 </body>
 
