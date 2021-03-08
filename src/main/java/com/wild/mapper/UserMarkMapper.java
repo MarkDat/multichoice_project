@@ -13,6 +13,7 @@ public class UserMarkMapper implements RowMapper<UserMark>{
 			UserMark u = new UserMark();
 			u.setIdUser(rs.getLong("iduser"));
 			u.setUserName(rs.getString("username"));
+			u.setAddress(rs.getString("address"));
 			u.setPhone(rs.getString("phone"));
 			u.setFullName(rs.getString("fullname"));
 			u.setPoint(rs.getInt("point"));
