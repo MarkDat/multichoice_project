@@ -17,6 +17,7 @@ import com.wild.daos.impl.ExamDao;
 import com.wild.daos.impl.GradeDao;
 import com.wild.daos.impl.QuestionDao;
 import com.wild.daos.impl.SubjectDao;
+import com.wild.daos.impl.UserMarkDao;
 import com.wild.dtos.ExamDTO;
 import com.wild.models.Exam;
 import com.wild.models.Grade;
@@ -24,6 +25,7 @@ import com.wild.models.Question;
 import com.wild.models.Role;
 import com.wild.models.Subject;
 import com.wild.models.User;
+import com.wild.models.UserMark;
 
 @Controller(value = "homeControllerOfWeb")
 public class HomeController {

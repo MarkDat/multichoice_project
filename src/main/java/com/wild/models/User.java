@@ -14,9 +14,7 @@ public class User  extends BaseModel{
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-	
+
 
 	public User(Long idUser, String fullName, String email, String address, String phone, String userName,
 			String password, Role role) {
@@ -29,6 +27,14 @@ public class User  extends BaseModel{
 		this.password = password;
 		this.role = role;
 	}
+
+
+
+
+
+
+
+
 
 
 	public String getUserName() {
@@ -88,6 +94,9 @@ public class User  extends BaseModel{
 	public void setRole(Role role) {
 		this.role = role;
 	}
+
+
+
 
 	
 }
