@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wild.daos.impl.ExamDTODao;
+import com.wild.daos.impl.UserMarkDao;
 import com.wild.dtos.ExamDTO;
+import com.wild.models.UserMark;
 
 @Controller(value = "homeControllerOfAdmin")
 public class HomeController {
@@ -28,8 +30,17 @@ public class HomeController {
 		List<ExamDTO> list= listExam.findExamsDTOAll();
 		
 		mav.addObject("list", list);
+		return mav;
+	}
+	
+	@RequestMapping(value = "/admin/tableExamList", method = RequestMethod.GET)
+	public ModelAndView memberList() {
+		ModelAndView mav = new ModelAndView("admin/listMember");
 		
+		UserMarkDao userListResult = new UserMarkDao();
+		List<UserMark> listUser = userListResult.findAll(); 
 		
+		mav.addObject("list", listUser);
 		return mav;
 	}
 	

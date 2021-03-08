@@ -21,24 +21,26 @@
 		<thead>
 			<tr>
 				<th>NO.</th>
-				<th>Exam ID</th>
-				<th>Title Exam</th>
-				<th>Subject Name</th>
-				<th>Grade</th>
+				<th>User name</th>
+				<th>Full name</th>
+				<th>Address</th>
+				<th>Phone</th>
+				<th>Point/Times</th>
 			</tr>
 		</thead>
 		<tfoot>
 			<tr>
 				<th>NO.</th>
-				<th>Exam ID</th>
-				<th>Title Exam</th>
-				<th>Subject Name</th>
-				<th>Grade</th>
+				<th>User name</th>
+				<th>Full name</th>
+				<th>Address</th>
+				<th>Phone</th>
+				<th>Point/Times</th>
 			</tr>
 		</tfoot>
 		<tbody>
 			<%!int count = 1;%>
-			<c:forEach var="list" items="${list}">
+			<c:forEach var="list" items="${listUser}">
 
 				<tr>
 					<td>
@@ -47,11 +49,11 @@
 						count++;
 						%>
 					</td>
-					<td>${list.idExam}</td>
-					<td>${list.titleExam}</td>
-					<td>${list.nameSubject}</td>
-					<td>${list.nameGrade}</td>
-
+					<td>${listUser.userName}</td>
+					<td>${listUser.fullName}</td>
+					<td>${listUser.}</td>
+					<td>${listUser.}</td>
+					<td>${listUser.}</td>
 				</tr>
 			</c:forEach>
 
