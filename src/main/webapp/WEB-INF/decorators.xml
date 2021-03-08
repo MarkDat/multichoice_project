@@ -7,7 +7,11 @@
     </decorator>
     
     <decorator name="home" page="admin.jsp">
-       <pattern>/home</pattern>
+       <pattern>/admin/home</pattern>
+    </decorator>
+    
+    <decorator name="table" page="admin.jsp">
+       <pattern>/admin/tableExamList</pattern>
     </decorator>
 
 </decorators>
