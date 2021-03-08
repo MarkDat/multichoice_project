@@ -7,7 +7,9 @@ public class Result extends BaseModel{
 	private Long idExam;
 	private Date testDay;
 	private Float mark;
-	
+	public Result() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	public Result(Long idUser, Long idExam, Date testDay, Float mark) {
 		super();

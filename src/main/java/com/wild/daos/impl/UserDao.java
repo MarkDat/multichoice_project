@@ -7,11 +7,6 @@ import com.wild.models.User;
 
 public class UserDao extends AbstractDAO<User> implements IUserDao{
 
-	@Override
-	public List<User> findUsersInfor() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public int editInfor(User user) {

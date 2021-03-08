@@ -13,11 +13,13 @@ import com.wild.daos.impl.ExamDao;
 import com.wild.daos.impl.GradeDao;
 import com.wild.daos.impl.QuestionDao;
 import com.wild.daos.impl.SubjectDao;
+import com.wild.daos.impl.UserMarkDao;
 import com.wild.dtos.ExamDTO;
 import com.wild.models.Exam;
 import com.wild.models.Grade;
 import com.wild.models.Question;
 import com.wild.models.Subject;
+import com.wild.models.UserMark;
 
 @Controller(value = "homeControllerOfWeb")
 public class HomeController {
@@ -30,12 +32,13 @@ public class HomeController {
 		ExamDTODao exd = new ExamDTODao();
 		ExamDao ex = new ExamDao();
 		SubjectDao sd = new SubjectDao();
+		UserMarkDao umd = new UserMarkDao();
 //		List<Grade> grades = a.getAll();
 		//List<Question> q = qs.findListQuesByIdExam(1L);
 		//List<Exam> q = ex.findExamsBySubjectId(4L);
 		
-		for (Subject q : sd.findSubjectsByIdGrade(1L)) {
-			System.out.println(q.getNameSubject());
+		for (UserMark q : umd.findAll()) {
+			System.out.println(q.getFullName() + " " + q.getPoint()+"/"+q.getTimes());
 		}
 		
 //		Exam objEx = new Exam(null, 3L, "Đề thi hóa phần hữu cơ");
