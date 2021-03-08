@@ -7,7 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+
+import com.wild.daos.IUserDao;
 import com.wild.daos.impl.ExamDTODao;
 import com.wild.daos.impl.ExamDao;
 import com.wild.daos.impl.GradeDao;
@@ -17,7 +21,9 @@ import com.wild.dtos.ExamDTO;
 import com.wild.models.Exam;
 import com.wild.models.Grade;
 import com.wild.models.Question;
+import com.wild.models.Role;
 import com.wild.models.Subject;
+import com.wild.models.User;
 
 @Controller(value = "homeControllerOfWeb")
 public class HomeController {
@@ -38,7 +44,7 @@ public class HomeController {
 			System.out.println(q.getNameSubject());
 		}
 		
-//		Exam objEx = new Exam(null, 3L, "Đề thi hóa phần hữu cơ");
+//		Exam objEx = new Exam(null, 3L, "Ä�á»� thi hÃ³a pháº§n há»¯u cÆ¡");
 //		System.out.println("OK add ? "+ex.addNewExam(objEx));
 		return mav;
 	}
