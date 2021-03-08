@@ -36,7 +36,7 @@ public class HomeController {
 		ExamDTODao exd = new ExamDTODao();
 		ExamDao ex = new ExamDao();
 		SubjectDao sd = new SubjectDao();
-		//List<Grade> grades = a.getAll();
+//		List<Grade> grades = a.getAll();
 		//List<Question> q = qs.findListQuesByIdExam(1L);
 		//List<Exam> q = ex.findExamsBySubjectId(4L);
 		
