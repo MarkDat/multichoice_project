@@ -26,9 +26,9 @@
 
 			<!-- Button login signin -->
 			<div class="mx-2">
-				<button type="button" class="btn btn-outline-secondary">
+				<button type="button" onclick="location.href='<c:url value="/login" />'" class="btn btn-outline-secondary">
 					Log in</button>
-				<button type="button" class="btn btn-outline-secondary">
+				<button type="button" onclick="location.href='<c:url value="/register" />'" class="btn btn-outline-secondary">
 					Sign in</button>
 			</div class="mx-2">
 			<!-- Button login signin -->

@@ -60,9 +60,4 @@ public class HomeController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public ModelAndView registerPage() {
-		ModelAndView mav = new ModelAndView("pages_other/register");
-		return mav;
-	}
 }
