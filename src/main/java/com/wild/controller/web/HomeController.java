@@ -33,7 +33,6 @@ public class HomeController {
 	@RequestMapping(value = "/trang-chu", method = RequestMethod.GET)
 	public ModelAndView homePage() {
 		ModelAndView mav = new ModelAndView("web/home");
-		GradeDao a = new GradeDao();
 		QuestionDao qs = new QuestionDao();
 		ExamDTODao exd = new ExamDTODao();
 		ExamDao ex = new ExamDao();
@@ -43,9 +42,11 @@ public class HomeController {
 
 		SubjectDao sd = new SubjectDao();
 		List<Subject> listSup = sd.findAll();
-
+		GradeDao a = new GradeDao();
+		List<Grade> listGrade = a.getAll();
+		
 		mav.addObject("listSup", listSup);
-
+		mav.addObject("listGrade", listGrade);
 //		Exam objEx = new Exam(null, 3L, "Đề thi hóa phần hữu cơ");
 //		System.out.println("OK add ? "+ex.addNewExam(objEx));
 		return mav;
@@ -60,6 +61,16 @@ public class HomeController {
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public ModelAndView registerPage() {
 		ModelAndView mav = new ModelAndView("pages_other/register");
+		return mav;
+	}
+	@RequestMapping(value = "/customer_info", method = RequestMethod.GET)
+	public ModelAndView cusInfoPage() {
+		ModelAndView mav = new ModelAndView("web/customer_info");
+		return mav;
+	}
+	@RequestMapping(value = "/edit_password", method = RequestMethod.GET)
+	public ModelAndView editPassPage() {
+		ModelAndView mav = new ModelAndView("web/edit_password");
 		return mav;
 	}
 }
