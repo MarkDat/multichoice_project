@@ -1,31 +1,21 @@
 package com.wild.controller.web;
 
-import java.sql.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-
-import com.wild.daos.IUserDao;
 import com.wild.daos.impl.ExamDTODao;
 import com.wild.daos.impl.ExamDao;
 import com.wild.daos.impl.GradeDao;
 import com.wild.daos.impl.QuestionDao;
+import com.wild.daos.impl.RankUserDao;
 import com.wild.daos.impl.SubjectDao;
 import com.wild.daos.impl.UserMarkDao;
-import com.wild.dtos.ExamDTO;
-import com.wild.models.Exam;
-import com.wild.models.Grade;
-import com.wild.models.Question;
-import com.wild.models.Role;
+import com.wild.models.RankUser;
 import com.wild.models.Subject;
-import com.wild.models.User;
-import com.wild.models.UserMark;
 
 @Controller(value = "homeControllerOfWeb")
 public class HomeController {
@@ -41,6 +31,19 @@ public class HomeController {
 		// List<Exam> q = ex.findExamsBySubjectId(4L);
 
 		SubjectDao sd = new SubjectDao();
+
+		UserMarkDao umd = new UserMarkDao();
+		RankUserDao rud = new RankUserDao();
+		
+//		List<Grade> grades = a.getAll();
+		//List<Question> q = qs.findListQuesByIdExam(1L);
+		//List<Exam> q = ex.findExamsBySubjectId(4L);
+		
+		for (RankUser q : rud.findAll()) {
+			System.out.println(q.getName()+" "+q.getTotalMark());
+		}
+		
+
 		List<Subject> listSup = sd.findAll();
 		GradeDao a = new GradeDao();
 		List<Grade> listGrade = a.getAll();
