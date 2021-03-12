@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.wild.daos.impl.RankUserDao;
 import com.wild.daos.impl.SubjectDao;
+import com.wild.daos.impl.UserMarkDao;
 import com.wild.models.Subject;
-import com.wild.models.User;
 
 @Controller(value = "homeControllerOfWeb")
 public class HomeController {
@@ -22,8 +23,8 @@ public class HomeController {
 		SubjectDao sd = new SubjectDao();
 
 		UserMarkDao umd = new UserMarkDao();
-		RankUserDao rud = new RankUserDao();
-		UserDao ud  = new UserDao();
+//		RankUserDao rud = new RankUserDao();
+//		UserDao ud  = new UserDao();
 //		List<Grade> grades = a.getAll();
 		//List<Question> q = qs.findListQuesByIdExam(1L);
 		//List<Exam> q = ex.findExamsBySubjectId(4L);
