@@ -5,14 +5,21 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<<<<<<< Updated upstream
 <title>Customer Info</title>
+=======
+<title>Customer Infor</title>
+>>>>>>> Stashed changes
 </head>
 
 <body>
 
 	<!-- Content -->
 	<div class="col-lg-7  justify-content-end">
+<<<<<<< Updated upstream
 		<!-- Edit info -->
+=======
+>>>>>>> Stashed changes
 		<div class="card border-color mb-3">
 			<div class="card-header border-color box-color">
 				<h6 class="text-center">Customer Information</h6>
@@ -44,15 +51,23 @@
 							<a id="editinfo" type="button"
 								class="btn btn-primary text-white mx-1"> Edit Info </a> <a
 								id="save" type="button"
+<<<<<<< Updated upstream
 								class="btn btn-primary d-none text-white mx-1"> Save </a> <a
 								id="editpass" type="button"
 								class="btn btn-secondary text-white mx-1"
 								href="/multichoice_project/edit_password"> Edit Password </a>
+=======
+								class="btn btn-primary d-none text-white mx-1"> Save
+								</button> <a id="editpass" type="button"
+								class="btn btn-secondary text-white mx-1"
+								href="/multichoice_project/edit_password"> Edit Passs </a>
+>>>>>>> Stashed changes
 						</div>
 					</div>
 				</form>
 			</div>
 		</div>
+<<<<<<< Updated upstream
 		<!-- Edit info -->
 		<!-- History -->
 		<div class="card border-color mb-3">
@@ -137,6 +152,8 @@
 			</div>
 		</div>
 		<!-- History -->
+=======
+>>>>>>> Stashed changes
 	</div>
 	<!-- Content -->
 

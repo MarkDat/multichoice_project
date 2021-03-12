@@ -60,6 +60,31 @@ public class UserDao extends AbstractDAO<User> implements IUserDao {
 		} finally {
 			DBConnectionUtil.close(conn, pst);
 		}
+<<<<<<< Updated upstream
+=======
+		
+		return 0L;
+	public int addNewUser(User user) {
+		final String sql = "INSERT INTO user_details(fullname, email, address, phone, username, pwd, status) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
+		int result = 0;
+		conn = getConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, user.getFullName());
+			pst.setString(2, user.getEmail());
+			pst.setString(3, user.getAddress());
+			pst.setString(4, user.getPhone());
+			pst.setString(5, user.getUserName());
+			pst.setString(6, user.getPassword());
+			pst.setInt(7, 0);
+			result = pst.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionUtil.close(conn, pst);
+		}
+>>>>>>> Stashed changes
 		if(result != 0)
 			result = addRoleUser(user.getRole().getCode(), user.getUserName());
 		return result;
@@ -67,6 +92,16 @@ public class UserDao extends AbstractDAO<User> implements IUserDao {
 
 	@Override
 	public User findByUserInforNameAndPassword(String userName, String password) {
+<<<<<<< Updated upstream
+=======
+		StringBuilder sql = new StringBuilder("SELECT * FROM user_details u, sub_rl_ud s, role r WHERE ");
+		sql.append("u.iduser = s.iduser AND r.idrole = s.idrole AND ");
+		sql.append("u.username = ? AND u.pwd = ?");
+		
+		List<User> us = query(sql.toString(), new UserMapper(),userName,password);
+		
+		return us.isEmpty() ? null:us.get(0);
+>>>>>>> Stashed changes
 		StringBuilder sql = new StringBuilder("SELECT * FROM user_details");
 		sql.append(" INNER JOIN role AS r ON r.id = u.roleid");
 		sql.append(" WHERE username = ? AND password = ? AND status = ?");

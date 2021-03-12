@@ -1,7 +1,16 @@
 package com.wild.controller.web;
 
+<<<<<<< Updated upstream
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+=======
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+>>>>>>> Stashed changes
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,11 +20,19 @@ import org.springframework.web.servlet.ModelAndView;
 import com.wild.daos.impl.UserDao;
 import com.wild.models.Role;
 import com.wild.models.User;
+<<<<<<< Updated upstream
+=======
+import com.wild.utils.StringUtil;
+>>>>>>> Stashed changes
 
 /**
  * Servlet implementation class RegisterController
  */
+<<<<<<< Updated upstream
 @Controller(value = "registerControllerOfWeb")
+=======
+@Controller
+>>>>>>> Stashed changes
 public class RegisterController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
