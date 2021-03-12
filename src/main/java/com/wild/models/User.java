@@ -28,6 +28,17 @@ public class User  extends BaseModel{
 		this.role = role;
 	}
 
+	public User(String fullName, String email, String address, String phone, String userName,
+			String password, Role role) {
+		this.fullName = fullName;
+		this.email = email;
+		this.address = address;
+		this.phone = phone;
+		this.userName = userName;
+		this.password = password;
+		this.role = role;
+	}
+
 	public String getUserName() {
 		return userName;
 	}
