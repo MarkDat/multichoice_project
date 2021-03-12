@@ -14,6 +14,7 @@ import com.wild.daos.impl.QuestionDao;
 import com.wild.daos.impl.RankUserDao;
 import com.wild.daos.impl.SubjectDao;
 import com.wild.daos.impl.UserMarkDao;
+import com.wild.models.Grade;
 import com.wild.models.RankUser;
 import com.wild.models.Subject;
 
@@ -60,12 +61,7 @@ public class HomeController {
 		ModelAndView mav = new ModelAndView("pages_other/login");
 		return mav;
 	}
-
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public ModelAndView registerPage() {
-		ModelAndView mav = new ModelAndView("pages_other/register");
-		return mav;
-	}
+	
 	@RequestMapping(value = "/customer_info", method = RequestMethod.GET)
 	public ModelAndView cusInfoPage() {
 		ModelAndView mav = new ModelAndView("web/customer_info");

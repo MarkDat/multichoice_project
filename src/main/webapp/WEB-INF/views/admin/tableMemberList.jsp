@@ -89,8 +89,6 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 								<button type="button" class="btn btn-primary" data-dismiss="modal" value="Save" onclick="postDataUser()">Submit</button>
 							</div>
 						</div>
-				
-	
 					</form>
 				</div>
 			</div>
@@ -126,19 +124,18 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 	}
 	
 	function postDataUser(){
-		 obj = {
-		 };
-		 
-		console.log(obj);
+		
 		$.ajax({
 			type : "POST",
 			contentType : "application/json;charset=utf-8",
 			url : "editu",
-			data :{"idUser" : formGroupExampleInput0.value,
+			data : 
+				JSON.stringify({
+					"idUser" : formGroupExampleInput0.value
 					"fullName" : formGroupExampleInput1.value,
 					"address" : formGroupExampleInput2.value,
 					"phone" : formGroupExampleInput3.value
-				},
+				}),
 			dataType : 'json',
 			timeout : 100000,
 			success : function(data) {

@@ -1,9 +1,11 @@
 package com.wild.controller.admin;
 
 import java.io.IOException;
+import java.net.http.HttpResponse;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,42 +29,41 @@ import com.wild.daos.impl.ExamDTODao;
 import com.wild.daos.impl.SubjectDao;
 import com.wild.daos.impl.UserMarkDao;
 import com.wild.dtos.ExamDTO;
+import com.wild.dtos.TestDTO;
 import com.wild.models.Subject;
 import com.wild.models.UserMark;
 
 @Controller(value = "homeControllerOfAdmin")
 public class HomeController {
 
-
-	
 	@RequestMapping(value = "/admin/home", method = RequestMethod.GET)
 	public ModelAndView homePage() {
 		ModelAndView mav = new ModelAndView("admin/home");
 		return mav;
 	}
 
-	@RequestMapping(value = "/admin/tableExamList", method = RequestMethod.GET )
+	@RequestMapping(value = "/admin/tableExamList", method = RequestMethod.GET)
 	public ModelAndView tablePage() {
 		ModelAndView mav = new ModelAndView("admin/tableExamList");
-		
-		
+
 		ExamDTODao listExam = new ExamDTODao();
-		List<ExamDTO> list= listExam.findExamsDTOAll();
+		List<ExamDTO> list = listExam.findExamsDTOAll();
 		SubjectDao listDistinctSubject = new SubjectDao();
 		List<Subject> listSubjectDistinct = listDistinctSubject.listDistinctSubject();
-		
+
 		mav.addObject("listSubjectDistinct", listSubjectDistinct);
 		mav.addObject("list", list);
-		
+
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/admin/tableMemberList", method = RequestMethod.GET)
-	public ModelAndView memberList(@RequestParam(required=false, name = "id") String id, HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView memberList(@RequestParam(required = false, name = "id") String id, HttpServletRequest request,
+			HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("admin/tableMemberList");
-		
+
 		UserMarkDao userMarkDao = new UserMarkDao();
-		
+
 		List<UserMark> listUser = userMarkDao.findAll();
 		mav.addObject("listUser", listUser);
 //		 
@@ -74,15 +75,14 @@ public class HomeController {
 //			return mav;
 //			
 //		}
-				
-		
+
 		return mav;
 	}
-	
-	@RequestMapping(value = "/admin/editu", method = RequestMethod.GET,produces = "application/json;charset=utf-8")
+
+	@RequestMapping(value = "/admin/editu", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
 	public @ResponseBody String edit(HttpServletRequest request) {
 		int idUser = Integer.parseInt(request.getParameter("id"));
-		
+
 		UserMarkDao userMarkDao = new UserMarkDao();
 		ObjectMapper mapper = new ObjectMapper();
 		String ajaxResponse = "";
@@ -95,16 +95,16 @@ public class HomeController {
 
 		return ajaxResponse;
 	}
-	
+
 	@RequestMapping(value = "/admin/editu", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
-	public @ResponseBody String editSubmit(@RequestParam Long idUser) {
+	@ResponseBody
+	public String editSubmit(HttpServletRequest req, @RequestBody UserMark um) {
 		System.out.println("CALL FUNCTION POST EDTI");
-		
-			
+		System.out.println(um.getIdUser());
+		// System.out.println(req.getAttribute("idUser"));
+
 		String ajaxResponse = "{\"status\":\"OK\"}";
 		return ajaxResponse;
 	}
-	
-	
-	
+
 }
