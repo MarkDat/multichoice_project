@@ -12,6 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.wild.daos.impl.RankUserDao;
 import com.wild.daos.impl.SubjectDao;
 import com.wild.daos.impl.UserMarkDao;
+import com.wild.models.Grade;
+import com.wild.models.RankUser;
 import com.wild.models.Subject;
 
 @Controller(value = "homeControllerOfWeb")
@@ -20,8 +22,6 @@ public class HomeController {
 	@RequestMapping(value = "/trang-chu", method = RequestMethod.GET)
 	public ModelAndView homePage() {
 		ModelAndView mav = new ModelAndView("web/home");
-<<<<<<< Updated upstream
-=======
 		QuestionDao qs = new QuestionDao();
 		ExamDTODao exd = new ExamDTODao();
 		ExamDao ex = new ExamDao();
@@ -29,7 +29,6 @@ public class HomeController {
 		// List<Question> q = qs.findListQuesByIdExam(1L);
 		// List<Exam> q = ex.findExamsBySubjectId(4L);
 
->>>>>>> Stashed changes
 		SubjectDao sd = new SubjectDao();
 
 		UserMarkDao umd = new UserMarkDao();
@@ -45,12 +44,9 @@ public class HomeController {
 //		
 //
 		List<Subject> listSup = sd.findAll();
-<<<<<<< Updated upstream
-=======
 		GradeDao a = new GradeDao();
 		List<Grade> listGrade = a.getAll();
 		
->>>>>>> Stashed changes
 		mav.addObject("listSup", listSup);
 		mav.addObject("listGrade", listGrade);
 //		Exam objEx = new Exam(null, 3L, "Đề thi hóa phần hữu cơ");
@@ -80,18 +76,7 @@ public class HomeController {
 		
 		return mav;
 	}
-
-	@RequestMapping(value = "/customer_info", method = RequestMethod.GET)
-	public ModelAndView cusInfoPage() {
-		ModelAndView mav = new ModelAndView("web/customer_info");
-		return mav;
-	}
-
-	@RequestMapping(value = "/edit_password", method = RequestMethod.GET)
-	public ModelAndView editPassPage() {
-		ModelAndView mav = new ModelAndView("web/edit_password");
-		return mav;
-	}
+	
 	@RequestMapping(value = "/customer_info", method = RequestMethod.GET)
 	public ModelAndView cusInfoPage() {
 		ModelAndView mav = new ModelAndView("web/customer_info");
