@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <decorators defaultdir="/decorators">
 
+	
+    <decorator name="trang-chu" page="web.jsp">
+       <pattern>/trang-chu</pattern>
+    </decorator>
+    
+    <decorator name="home" page="admin.jsp">
+       <pattern>/admin/home</pattern>
+    </decorator>
+    
+    <decorator name="table" page="admin.jsp">
+       <pattern>/admin/tableExamList</pattern>
+    </decorator>
+    
+    <decorator name="table" page="admin.jsp">
+       <pattern>/admin/tableMemberList</pattern>
+    </decorator>
+    
 
-	<decorator name="trang-chu" page="web.jsp">
-		<pattern>/trang-chu</pattern>
-	</decorator>
-	<decorator name="customer_info" page="web.jsp">
-		<pattern>/customer_info</pattern>s
-	</decorator>
-	<decorator name="edit_password" page="web.jsp">
-		<pattern>/edit_password</pattern>s
-	</decorator>
-
-	<decorator name="home" page="admin.jsp">
-		<pattern>/admin/home</pattern>
-	</decorator>
-	<decorator name="table" page="admin.jsp">
-		<pattern>/admin/tableExamList</pattern>
-	</decorator>
+    
 
 </decorators>

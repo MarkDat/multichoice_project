@@ -49,8 +49,8 @@ pageEncoding="UTF-8"%> <%@ include file="/common/taglib.jsp"%>
 										</button>
 										<div class="dropdown-menu">
 										
-											<a class="dropdown-item" href="#" value="Members list" id="members-list">Members list</a>
-											<a class="dropdown-item" href="#" value="Exam list" id="exam-list">Exam list</a>
+											<a class="dropdown-item" href="<c:url value='/admin/tableMemberList' />" value="Members list" id="members-list">Members list</a>
+											<a class="dropdown-item" href="<c:url value='/admin/tableExamList' />" value="Exam list" id="exam-list">Exam list</a>
 											<a class="dropdown-item" href="#" value="..." >Link 3</a>
 										</div>
 										
@@ -74,6 +74,8 @@ pageEncoding="UTF-8"%> <%@ include file="/common/taglib.jsp"%>
 			<%@ include file="/common/admin/footer.jsp"%>
 			<!--Footer -->
 		</div>
+		
+		
 	</div>
 	<!-- Bootstrap core JavaScript-->
 	<script src="<c:url value='/template/admin/vendor/jquery/jquery.min.js'/>"></script>

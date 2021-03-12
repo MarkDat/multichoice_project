@@ -11,4 +11,5 @@ public class Constants {
 		
 		//upload
 		public static final String DIR_UPLOAD = "templates/images";
+		
 }
