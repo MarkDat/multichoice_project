@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core"%>
+pageEncoding="UTF-8"%> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="/common/taglib.jsp"%>
 
 <!DOCTYPE html>
 
@@ -131,7 +132,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 			url : "editu",
 			data : 
 				JSON.stringify({
-					"idUser" : formGroupExampleInput0.value
+					"idUser" : formGroupExampleInput0.value,
 					"fullName" : formGroupExampleInput1.value,
 					"address" : formGroupExampleInput2.value,
 					"phone" : formGroupExampleInput3.value
@@ -147,10 +148,14 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 				console.log("LOIII")
 				console.log("ERROR: ", e);
 			}
-		}); 
+		});  
 	}
 	
 	
+</script>
+
+<script>
+
 </script>
 </body>
 

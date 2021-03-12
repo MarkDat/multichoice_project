@@ -101,6 +101,7 @@ public class HomeController {
 	public String editSubmit(HttpServletRequest req, @RequestBody UserMark um) {
 		System.out.println("CALL FUNCTION POST EDTI");
 		System.out.println(um.getIdUser());
+		System.out.println(um.getAddress());
 		// System.out.println(req.getAttribute("idUser"));
 
 		String ajaxResponse = "{\"status\":\"OK\"}";
