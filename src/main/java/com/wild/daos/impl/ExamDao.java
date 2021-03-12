@@ -23,7 +23,7 @@ public class ExamDao extends AbstractDAO<Exam> implements IExamDao{
 	}
 
 	@Override
-	public int addNewExam(Exam ex) {
+	public Long addNewExam(Exam ex) {
 		StringBuilder sql = new StringBuilder("INSERT INTO exam (");
 		sql.append("idsubject,createddate,modifieddate,titleexam)");
 		sql.append(" VALUES(?,?,?,? )");
@@ -32,6 +32,8 @@ public class ExamDao extends AbstractDAO<Exam> implements IExamDao{
 		Date date = new Date(System.currentTimeMillis());
 		return insert(sql.toString(), ex.getIdSubject(),formatter.format(date),formatter.format(date),ex.getTitleExam());
 	}
+
+	
 	
 	
 	

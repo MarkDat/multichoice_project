@@ -7,6 +7,6 @@ import com.wild.models.User;
 public interface IUserDao extends GenericDAO<User>{
 	int editInfor(User user);
 	int editPass(User user);
-	int addNewUser(User user);
+	Long addNewUser(User user);
 	User findByUserInforNameAndPassword(String userName, String password);
 }
