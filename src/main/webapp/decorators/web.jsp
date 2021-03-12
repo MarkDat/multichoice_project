@@ -22,10 +22,10 @@
 	<%@ include file="/common/web/header.jsp"%>
 
 	<!-- Body -->
-	<div  class="container-fluid">
-		<div class="row justify-content-between">
+	<div class="container-fluid">
+		<div class="row">
 			<!-- Changing content -->
-			<dec:body/>
+			<dec:body />
 			<!-- Changing content -->
 			<!-- Sidebar-Left -->
 			<%@ include file="/common/web/sidebar_left.jsp"%>
@@ -41,5 +41,7 @@
 		src="<c:url value='/template/web/vendor/jquery/jquery.min.js'/>"></script>
 	<script
 		src="<c:url value='/template/web/vendor/bootstrap/js/bootstrap.bundle.min.js'/>"></script>
+		<script
+		src="<c:url value='/template/web/js/customer.js'/>"></script>
 </body>
 </html>

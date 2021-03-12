@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ include file="/common/taglib.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -25,46 +25,77 @@
 						class="w-100 d-none d-lg-flex h-100" alt="" />
 				</div>
 
-				<div class="col-lg-7 px-5 pt-5">
+				<div class="col-lg-7 px-5 pt-2">
+					<c:choose>
+						<c:when test="${param.msg == '1'}">
+							<div class="alert alert-danger alert-dismissible fade show"
+								role="alert">Password không khớp</div>
+						</c:when>
+						<c:when test="${param.msg == '2'}">
+							<div class="alert alert-danger alert-dismissible fade show"
+								role="alert">Trùng email</div>
+						</c:when>
+						<c:when test="${param.msg == '3'}">
+							<div class="alert alert-danger alert-dismissible fade show"
+								role="alert">Trùng username</div>
+						</c:when>
+						<c:when test="${param.msg == '4'}">
+							<div class="alert alert-danger alert-dismissible fade show"
+								role="alert">Không thể đăng ký</div>
+						</c:when>
+					</c:choose>
 					<h1 class="font-weight-bold py-3">MCWA</h1>
 					<h4>Quick and easy!</h4>
-					<form>
+					<form action="<c:url value='/register'/>" method="POST">
 						<div class="form-row">
 							<div class="col-lg-6">
-								<input type="text" placeholder="First Name"
-									class="form-control my-3 p-4" />
+								<input type="text" placeholder="Full Name"
+									class="form-control my-3 p-4" name="fullname" required />
 							</div>
 							<div class="col-lg-6">
-								<input type="text" placeholder="Last Name"
-									class="form-control my-3 p-4" />
+								<input type="text" placeholder="Username"
+									class="form-control my-3 p-4" name="username" required />
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="col-lg-12">
 								<input type="email" placeholder="Email"
-									class="form-control my-3 p-4" />
+									class="form-control my-3 p-4" name="email" required />
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col-lg-12">
+								<input type="text" placeholder="Phone"
+									class="form-control my-3 p-4" name="phone" required />
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col-lg-12">
+								<input type="text" placeholder="Address"
+									class="form-control my-3 p-4" name="address" required />
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="col-lg-6">
 								<input type="password" placeholder="Password"
-									class="form-control my-3 p-4" />
+									class="form-control my-3 p-4" name="password" required />
 							</div>
 							<div class="col-lg-6">
 								<input type="password" placeholder="Confirm Password"
-									class="form-control my-3 p-4" />
+									class="form-control my-3 p-4" name="repassword" required />
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="col-lg-6">
-								<button type="button"
+								<button type="submit"
 									class="btn btn-lg btn-dark w-100 font-weight-bold rounded my-3">
 									Register</button>
 							</div>
 						</div>
 						<a href="#">Forgot password</a>
 						<p>
-							Do you already have an account?<a href="/multichoice_project/login"> Login here</a>
+							Do you already have an account?<a
+								href="/multichoice_project/login"> Login here</a>
 						</p>
 					</form>
 				</div>

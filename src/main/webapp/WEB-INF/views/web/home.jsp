@@ -2,18 +2,15 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-
 <html>
-
 <head>
-
-<meta charset="UTF-8">
-<title>Trang chủ</title>
+<meta charset="ISO-8859-1">
+<title>Home Page</title>
 </head>
 
 <body>
 	<!-- Content -->
-	<div class="col-lg-9">
+	<div class="col-lg-7">
 		<div class="row row-eq-heights">
 			<!-- run FOR for display subject-->
 			<c:forEach items="${listSup}" var="sup">
@@ -32,7 +29,6 @@
 		</div>
 	</div>
 	<!-- Content -->
-
 </body>
 
 </html>

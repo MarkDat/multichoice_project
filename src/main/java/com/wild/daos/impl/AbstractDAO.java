@@ -15,10 +15,10 @@ import com.wild.utils.DBConnectionUtil;
 
 public class AbstractDAO<T> implements GenericDAO<T> {
 
-//	protected Connection conn;
-//	protected Statement st;
-//	protected ResultSet rs;
-//	protected PreparedStatement pst;
+	protected Connection conn;
+	protected Statement st;
+	protected ResultSet rs;
+	protected PreparedStatement pst;
 	
 	public Connection getConnection() {
 		return DBConnectionUtil.getConnection();
