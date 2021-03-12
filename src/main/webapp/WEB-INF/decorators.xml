@@ -13,5 +13,12 @@
     <decorator name="table" page="admin.jsp">
        <pattern>/admin/tableExamList</pattern>
     </decorator>
+    
+    <decorator name="table" page="admin.jsp">
+       <pattern>/admin/tableMemberList</pattern>
+    </decorator>
+    
+
+    
 
 </decorators>

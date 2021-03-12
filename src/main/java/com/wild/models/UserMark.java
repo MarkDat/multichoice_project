@@ -27,7 +27,22 @@ public class UserMark {
 		this.point = point;
 		this.times = times;
 	}
+	
+	public UserMark(String fullName, String phone, String userName, String address,
+			int point, int times) {
+		this.fullName = fullName;
+		this.phone = phone;
+		this.userName = userName;
+		this.address = address;
+		this.point = point;
+		this.times = times;
+	}
 
+	
+	public double averagePointByTimes() {
+		return (this.point/this.times);
+		
+	}
 
 
 	public Long getIdUser() {
