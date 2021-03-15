@@ -35,8 +35,12 @@
 	<decorator name="table" page="admin.jsp">
 		<pattern>/admin/tableMemberList</pattern>
 	</decorator>
+    
+    <decorator name="table" page="admin.jsp">
+       <pattern>/admin/detailQuestions</pattern>
+    </decorator>
+    
 
-
-
+    
 
 </decorators>

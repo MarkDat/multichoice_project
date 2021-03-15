@@ -1,7 +1,6 @@
 package com.wild.controller.admin;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +18,6 @@ import com.wild.daos.impl.ExamDTODao;
 import com.wild.daos.impl.SubjectDao;
 import com.wild.daos.impl.UserMarkDao;
 import com.wild.dtos.ExamDTO;
-import com.wild.dtos.TestDTO;
 import com.wild.models.Subject;
 import com.wild.models.UserMark;
 
@@ -56,15 +54,7 @@ public class HomeController {
 
 		List<UserMark> listUser = userMarkDao.findAll();
 		mav.addObject("listUser", listUser);
-//		 
-//		
-//		if(id != null) {
-//			int idUser = Integer.parseInt(request.getParameter("id"));
-//			UserMark userById = userMarkDao.findUserMarkById(idUser); 
-//			mav.addObject("user", userById);
-//			return mav;
-//			
-//		}
+
 
 		return mav;
 	}
@@ -72,7 +62,7 @@ public class HomeController {
 	@RequestMapping(value = "/admin/editu", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
 	public @ResponseBody String edit(HttpServletRequest request) {
 		int idUser = Integer.parseInt(request.getParameter("id"));
-
+		System.out.println("id nguoi dung: "+idUser);
 		UserMarkDao userMarkDao = new UserMarkDao();
 		ObjectMapper mapper = new ObjectMapper();
 		String ajaxResponse = "";
@@ -89,13 +79,58 @@ public class HomeController {
 	@RequestMapping(value = "/admin/editu", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
 	@ResponseBody
 	public String editSubmit(HttpServletRequest req, @RequestBody UserMark um) {
-		System.out.println("CALL FUNCTION POST EDTI");
-		System.out.println(um.getIdUser());
-		System.out.println(um.getAddress());
-		// System.out.println(req.getAttribute("idUser"));
+		String ajaxResponse;
 
-		String ajaxResponse = "{\"status\":\"OK\"}";
+		
+		UserMarkDao userMarkDao = new UserMarkDao();
+		int result = userMarkDao.editListMember(um);
+		
+		if(result != 0) {
+			ajaxResponse = "{\"status\":\"SUCCEED\"}";
+		}
+		else
+			ajaxResponse = "{\"status\":\"FAILED\"}";
+		
+		
 		return ajaxResponse;
 	}
+	
+
+	
+	
+	@RequestMapping(value = "/admin/deleteu", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
+	@ResponseBody
+	public String updateStatusSubmit(HttpServletRequest request, @RequestBody UserMark um) {
+
+		UserMarkDao userMarkDao = new UserMarkDao();
+		String ajaxResponse = "";
+		System.out.println("Id user : "+um.getIdUser());
+		System.out.println("Status user : "+um.getStatus());
+		;
+		
+		
+		int result;
+		if(um.getStatus() == 0) {
+			um.setStatus(1);
+			result = userMarkDao.updateStatusListMember(um);
+		}
+		else {
+			um.setStatus(0);
+			result = userMarkDao.updateStatusListMember(um);
+		}
+		 
+		
+		if(result != 0) {
+			ajaxResponse = "{\"status\":\"SUCCEED\"}";
+		}
+		else
+			ajaxResponse = "{\"status\":\"FAILED\"}";
+		
+		System.out.println("Ket qua cap nhat : "+result);
+		
+		return ajaxResponse;
+	}
+
+	
 
 }
