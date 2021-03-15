@@ -62,6 +62,12 @@ public class HomeController {
 		return "method7 with id="+id;
 	}
 	
+<<<<<<< Updated upstream
+=======
+		
+		return mav;
+	}
+>>>>>>> Stashed changes
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView loginPage() {
