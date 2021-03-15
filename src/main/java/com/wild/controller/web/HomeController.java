@@ -53,10 +53,4 @@ public class HomeController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView loginPage() {
-		ModelAndView mav = new ModelAndView("pages_other/login");
-		return mav;
-	}
-
 }

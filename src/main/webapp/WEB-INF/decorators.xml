@@ -13,5 +13,5 @@
     <decorator name="table" page="admin.jsp">
        <pattern>/admin/tableExamList</pattern>
     </decorator>
-
+	
 </decorators>
