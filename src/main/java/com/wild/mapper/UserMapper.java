@@ -22,6 +22,7 @@ public class UserMapper implements RowMapper<User>{
 			u.setModifiedDate(rs.getDate("modifieddate"));
 			u.setUserName(rs.getString("username"));
 			u.setPassword(rs.getString("pwd"));
+			u.setStatus(rs.getInt("status"));
 			try {
 				Role role = new Role();
 				role.setIdRole(rs.getLong("id"));

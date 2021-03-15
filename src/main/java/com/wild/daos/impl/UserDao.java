@@ -87,7 +87,7 @@ public class UserDao extends AbstractDAO<User> implements IUserDao {
 			pst.setString(1, username);
 			rs = pst.executeQuery();
 			if (rs.next()) {
-				user = new User(rs.getLong("iduser"), rs.getString("fullname"), rs.getString("email"), rs.getString("address"), rs.getString("phone"), rs.getString("username"), rs.getString("pwd"), new Role());
+				user = new User(rs.getLong("iduser"), rs.getString("fullname"), rs.getString("email"), rs.getString("address"), rs.getString("phone"), rs.getString("username"), rs.getString("pwd"), rs.getInt("status"),new Role());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
