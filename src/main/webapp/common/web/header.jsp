@@ -36,7 +36,8 @@
 						List<Grade> listGrade = a.getAll();
 						for (Grade grade : listGrade) {
 						%>
-						<li><a class="dropdown-item bg-dark text-white" href="#">
+						<li><a class="dropdown-item bg-dark text-white"
+							href="/multichoice_project/grade?id=<%=grade.getIdGrade()%>">
 								<%=grade.getNameGrade()%>
 						</a></li>
 						<%
