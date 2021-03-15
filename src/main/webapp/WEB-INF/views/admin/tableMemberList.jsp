@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="/common/taglib.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 
@@ -47,7 +46,7 @@ pageEncoding="UTF-8"%>
 						<% String del = "del"+count;
 							pageContext.setAttribute("del", del);
 						%>
-						<input type="submit" id="${del}" value="${listUser.status == 0 ? 'Active':'Block'}" onclick="postStatusUser('${del}',${listUser.idUser}, ${listUser.status})" class="btn-status btn ${listUser.status == 0 ? 'btn-info':'btn-danger'} mr-2" />
+						<input type="submit" id="${del}" value="${listUser.status == 0 ? 'Active':'Block'}" onclick="postStatusUser('${del}', ${listUser.idUser}, ${listUser.status})" class="btn-status btn ${listUser.status == 0 ? 'btn-info':'btn-danger'} mr-2" />
 
 					</td>
 				</tr>
@@ -166,13 +165,13 @@ pageEncoding="UTF-8"%>
 
 		function memberList(callback) {
 			Swal.fire({
-				title: 'Are you sure?',
+				title: 'You are editing member?',
 				text: "You won't be able to revert this!",
 				icon: 'warning',
 				showCancelButton: true,
 				confirmButtonColor: '#3085d6',
 				cancelButtonColor: '#d33',
-				confirmButtonText: 'Yes, delete it!'
+				confirmButtonText: 'Edit'
 			}).then((result) => {
 				if (result.isConfirmed) {
 					callback();
