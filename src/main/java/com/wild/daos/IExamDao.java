@@ -10,5 +10,7 @@ public interface IExamDao extends GenericDAO<Exam>{
 	//Tim de thi theo id mon
 	List<Exam> findExamsBySubjectId(Long idSubject);
 	
-	Long addNewExam(Exam ex);
+	int addNewExam(Exam ex);
+	
+	Exam findExamById(Long idSubject);
  }

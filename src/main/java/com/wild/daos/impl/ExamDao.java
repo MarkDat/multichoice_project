@@ -35,7 +35,11 @@ public class ExamDao extends AbstractDAO<Exam> implements IExamDao{
 
 	
 	
-	
+	@Override
+	public Exam findExamById(Long idE) {
+		String sql = "SELECT * FROM `exam` WHERE idexam=?";
+		return query(sql, new ExamMapper(),idE).get(0);
+	}
 	
 
 }

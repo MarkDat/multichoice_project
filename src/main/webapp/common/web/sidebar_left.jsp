@@ -32,7 +32,7 @@
 			</table>
 		</div>
 	</div>
-	<div class="card border-color mt-3">
+	<div class="card border-color my-3">
 		<div class="card-header border-color box-color">
 			<h6 class="text-center">Hỗ trợ trực tuyến</h6>
 		</div>
