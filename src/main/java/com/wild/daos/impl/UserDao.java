@@ -8,6 +8,10 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import com.wild.daos.IUserDao;
+import com.wild.mapper.UserCheckLoginMapper;
+import com.wild.mapper.UserMapper;
+import com.wild.models.User;
+import com.wild.models.UserCheckLogin;
 import com.wild.mapper.UserMapper;
 import com.wild.models.Role;
 import com.wild.models.User;
@@ -29,10 +33,14 @@ public class UserDao extends AbstractDAO<User> implements IUserDao {
 
 	@Override
 	public int editPass(User user) {
-		// TODO Auto-generated method stub
-		return 0;
+		StringBuilder sql = new StringBuilder("UPDATE user_details SET ");
+		sql.append("pwd = ? ");
+		sql.append("WHERE iduser = ?");
+		return update(sql.toString(), user.getPassword(), user.getIdUser());
 	}
 
+	//Cái này dành cho form đăng ký user, cũng có thể dành cho cái add user bên admin nhưng t phải config lại 1 chút mới 
+	//được, hiện tại thì khoan dùng cho admin
 	@Override
 	public int addNewUser(User user) {
 		final String sql = "INSERT INTO user_details(fullname, email, address, phone, username, pwd, status) "

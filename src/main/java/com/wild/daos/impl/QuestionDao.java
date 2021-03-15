@@ -18,7 +18,7 @@ public class QuestionDao extends AbstractDAO<Question> implements IQuestionDao{
 	}
 
 	@Override
-	public int addNewQuesByIdExam(Question qs) {
+	public Long addNewQuesByIdExam(Question qs) {
 		StringBuilder sql = new StringBuilder("INSERT INTO question (");
 		sql.append("idexam, createddate, modifieddate,content, img,rsa,rsb,rsc,rsd,rs)");
 		sql.append(" VALUES(?,?,?,?,?,?,?,?,?,? )");

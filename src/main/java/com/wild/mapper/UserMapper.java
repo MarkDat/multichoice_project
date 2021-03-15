@@ -24,7 +24,7 @@ public class UserMapper implements RowMapper<User>{
 			u.setPassword(rs.getString("pwd"));
 			try {
 				Role role = new Role();
-				role.setIdRole(rs.getLong("id"));
+				role.setIdRole(rs.getLong("idrole"));
 				role.setRoleName(rs.getString("rolename"));
 				role.setCode(rs.getString("code"));
 				u.setRole(role);
