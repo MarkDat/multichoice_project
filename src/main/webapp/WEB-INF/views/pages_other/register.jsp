@@ -24,29 +24,23 @@
 						src="https://i.pinimg.com/564x/38/f5/06/38f50654e2d3ba2fc9b636c92e024c5e.jpg"
 						class="w-100 d-none d-lg-flex h-100" alt="" />
 				</div>
-
+				<%
+					String msg = null;
+				if (request.getAttribute("msg") != null)
+					msg = (String) request.getAttribute("msg");
+				%>
 				<div class="col-lg-7 px-5 pt-2">
-					<c:choose>
-						<c:when test="${param.msg == '1'}">
-							<div class="alert alert-danger alert-dismissible fade show"
-								role="alert">Password không khớp</div>
-						</c:when>
-						<c:when test="${param.msg == '2'}">
-							<div class="alert alert-danger alert-dismissible fade show"
-								role="alert">Trùng email</div>
-						</c:when>
-						<c:when test="${param.msg == '3'}">
-							<div class="alert alert-danger alert-dismissible fade show"
-								role="alert">Trùng username</div>
-						</c:when>
-						<c:when test="${param.msg == '4'}">
-							<div class="alert alert-danger alert-dismissible fade show"
-								role="alert">Không thể đăng ký</div>
-						</c:when>
-					</c:choose>
+					<%
+						if (msg != null) {
+					%>
+					<div class="alert alert-danger alert-dismissible fade show"
+						role="alert"><%=msg%></div>
+					<%
+						}
+					%>
 					<h1 class="font-weight-bold py-3">MCWA</h1>
 					<h4>Quick and easy!</h4>
-					<form action="<c:url value='/register'/>" method="POST">
+					<form action="<%=request.getContextPath()%>/register" method="POST">
 						<div class="form-row">
 							<div class="col-lg-6">
 								<input type="text" placeholder="Full Name"

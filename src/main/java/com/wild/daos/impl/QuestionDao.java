@@ -18,7 +18,7 @@ public class QuestionDao extends AbstractDAO<Question> implements IQuestionDao{
 	}
 
 	@Override
-	public int addNewQuesByIdExam(Question qs) {
+	public Long addNewQuesByIdExam(Question qs) {
 		StringBuilder sql = new StringBuilder("INSERT INTO question (");
 		sql.append("idexam, createddate, modifieddate,content, img,rsa,rsb,rsc,rsd,rs)");
 		sql.append(" VALUES(?,?,?,?,?,?,?,?,?,? )");
@@ -74,6 +74,25 @@ public class QuestionDao extends AbstractDAO<Question> implements IQuestionDao{
 	
 	
 
+	public int addListQuestionByIdExam(List<Question> lq) {
+		// TODO Auto-generated method stub
+		StringBuilder sql = new StringBuilder("INSERT INTO question ( ");
+		sql.append("idexam, createddate, modifieddate,content, img,rsa,rsb,rsc,rsd,rs) ");
+		sql.append("VALUES(?,?,?,?,?,?,?,?,?,? )");
+		
+		int count = 0;
+		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date(System.currentTimeMillis());
+		
+		for (int i = 0; i < lq.size(); i++) {
+			Question qs = lq.get(i);
+			count += insert(sql.toString(), qs.getIdExam(),formatter.format(date),formatter.format(date),qs.getContent(),
+					qs.getImg(),qs.getRsA(),qs.getRsB(),qs.getRsC(),qs.getRsD(),qs.getRs());
+		}
 
+		return count;
+	}
+
+	
 	
 }

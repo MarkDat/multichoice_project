@@ -1,6 +1,8 @@
 package com.wild.controller.web;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,11 +17,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.wild.daos.impl.UserDao;
 import com.wild.models.Role;
 import com.wild.models.User;
+
 import com.wild.utils.StringUtil;
+
 
 /**
  * Servlet implementation class RegisterController
  */
+
 @Controller
 public class RegisterController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -29,9 +34,10 @@ public class RegisterController extends HttpServlet {
 		ModelAndView mav = new ModelAndView("pages_other/register");
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ModelAndView registerPage(HttpServletRequest request) {
+	public ModelAndView registerPage(HttpServletRequest request) throws UnsupportedEncodingException {
+		request.setCharacterEncoding("UTF-8");
 		String fullName = request.getParameter("fullname");
 		String username = request.getParameter("username");
 		String email = request.getParameter("email");
@@ -39,26 +45,25 @@ public class RegisterController extends HttpServlet {
 		String address = request.getParameter("address");
 		String password = request.getParameter("password");
 		String repassword = request.getParameter("repassword");
-		
-		ModelAndView mav;
+
+		ModelAndView mav = new ModelAndView("pages_other/register");
 		UserDao userDao = new UserDao();
-		
-		if(!password.equals(repassword)) {
-			mav = new ModelAndView("pages_other/register?msg=1");
-			return mav;
-		} else if(userDao.findUserByEmail(email) != null) {
-			mav = new ModelAndView("pages_other/register?msg=2");
-			return mav;
-		} else if(userDao.findUserByUsername(username) != null) {
-			mav = new ModelAndView("pages_other/register?msg=3");
-			return mav;
-		}
-		
-		User user = new User(fullName, email, address, phone, username, password, new Role("USER"));
-		if(userDao.addNewUser(user) == 1) {
-			mav = new ModelAndView("pages_other/login");
+
+		if (!password.equals(repassword)) {
+			mav.addObject("msg", "Password did not match");
+		} else if (userDao.findUserByEmail(email) != null) {
+			mav.addObject("msg", "Email has been registered");
+		} else if (userDao.findUserByUsername(username) != null) {
+			mav.addObject("msg", "Username has been registered");
 		} else {
-			mav = new ModelAndView("pages_other/register?msg=4");
+
+			User user = new User(fullName, email, address, phone, username, password, new Role("USER"));
+			if (userDao.addNewUser(user) == 1) {
+				mav = new ModelAndView("pages_other/login");
+				return mav;
+			} else {
+				mav.addObject("msg", "Registration Failed");
+			}
 		}
 		return mav;
 	}

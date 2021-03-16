@@ -1,10 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+	
+<%@page import="com.wild.daos.impl.RankUserDao" %>
+<%@page import="java.util.List"%>
 <!-- Rank -->
 <div class="col-lg-3 order-lg-first">
 	<div class="card border-color mb-3">
 		<div class="card-header border-color box-color">
+			<%
+				RankUserDao rud = new RankUserDao();
+				
+			%>
 			<h6 class="text-center">Vinh danh bảng vàng</h6>
 		</div>
 		<div class="card-body">
@@ -32,7 +38,7 @@
 			</table>
 		</div>
 	</div>
-	<div class="card border-color mt-3">
+	<div class="card border-color my-3">
 		<div class="card-header border-color box-color">
 			<h6 class="text-center">Hỗ trợ trực tuyến</h6>
 		</div>

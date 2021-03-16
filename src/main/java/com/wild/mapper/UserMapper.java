@@ -25,7 +25,7 @@ public class UserMapper implements RowMapper<User>{
 			u.setStatus(rs.getInt("status"));
 			try {
 				Role role = new Role();
-				role.setIdRole(rs.getLong("id"));
+				role.setIdRole(rs.getLong("idrole"));
 				role.setRoleName(rs.getString("rolename"));
 				role.setCode(rs.getString("code"));
 				u.setRole(role);

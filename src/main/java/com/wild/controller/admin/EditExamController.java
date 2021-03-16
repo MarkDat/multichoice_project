@@ -92,6 +92,8 @@ public class EditExamController {
 
 		System.out.println("idq : "+question.getIdQ());
 		
+		
+		
 		QuestionDao questionDao = new QuestionDao();
 		int result = questionDao.deleteQuesById(question.getIdQ());
 		

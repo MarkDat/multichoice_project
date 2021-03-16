@@ -5,12 +5,15 @@ public class Question extends BaseModel{
 	private Long idExam;
 	private String content;
 	private String img="";
-	private String rsA;
-	private String rsB;
-	private String rsC;
-	private String rsD;
-	private String rs;
-	
+	private String rsA=null;
+	private String rsB=null;
+	private String rsC=null;
+	private String rsD=null;
+	private String rs=null;
+	private Boolean choseA=false;
+	private Boolean choseB=false;
+	private Boolean choseC=false;
+	private Boolean choseD=false;
 	
 	public Question() {
 		super();
@@ -82,5 +85,30 @@ public class Question extends BaseModel{
 	public void setRs(String rs) {
 		this.rs = rs;
 	}
+	public Boolean getChoseA() {
+		return choseA;
+	}
+	public void setChoseA(Boolean choseA) {
+		this.choseA = choseA;
+	}
+	public Boolean getChoseB() {
+		return choseB;
+	}
+	public void setChoseB(Boolean choseB) {
+		this.choseB = choseB;
+	}
+	public Boolean getChoseC() {
+		return choseC;
+	}
+	public void setChoseC(Boolean choseC) {
+		this.choseC = choseC;
+	}
+	public Boolean getChoseD() {
+		return choseD;
+	}
+	public void setChoseD(Boolean choseD) {
+		this.choseD = choseD;
+	}
+	
 	
 }

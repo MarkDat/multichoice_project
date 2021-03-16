@@ -1,12 +1,9 @@
 package com.wild.daos.impl;
 
 import java.sql.SQLException;
-import java.util.List;
 
 import com.wild.daos.IRoleDao;
-import com.wild.mapper.RoleMapper;
 import com.wild.models.Role;
-import com.wild.models.User;
 import com.wild.utils.DBConnectionUtil;
 
 public class RoleDao extends AbstractDAO<Role> implements IRoleDao {
