@@ -1,16 +1,17 @@
 package com.wild.controller.web;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wild.daos.impl.ExamDao;
@@ -18,8 +19,8 @@ import com.wild.daos.impl.QuestionDao;
 import com.wild.daos.impl.SubjectDao;
 import com.wild.models.Exam;
 import com.wild.models.Question;
-import com.wild.models.ResultOfClient;
 import com.wild.models.Subject;
+import com.wild.utils.ReadWriteExcel;
 
 @Controller(value = "homeControllerOfWeb")
 public class HomeController {
@@ -29,6 +30,8 @@ public class HomeController {
 		ModelAndView mav = new ModelAndView("web/home");
 		SubjectDao sd = new SubjectDao();
 		List<Subject> listSup = sd.findAll();
+		
+		
 		mav.addObject("listSup", listSup);
 		return mav;
 	}
@@ -122,6 +125,20 @@ public class HomeController {
 	@RequestMapping(value = "/edit_password", method = RequestMethod.GET)
 	public ModelAndView editPassPage() {
 		ModelAndView mav = new ModelAndView("web/edit_password");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/testFile", method = RequestMethod.GET)
+	public ModelAndView testFile() {
+		ModelAndView mav = new ModelAndView("web/testGetFile");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/testFile", method = RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView postFile(HttpServletRequest req, @RequestBody List<Question> qs) {
+		ModelAndView mav = new ModelAndView("web/testGetFile");
+		System.out.println(qs.get(0).getContent());
 		return mav;
 	}
 }

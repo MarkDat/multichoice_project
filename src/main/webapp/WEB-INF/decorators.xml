@@ -23,6 +23,11 @@
 	<decorator name="result" page="web.jsp">
 		<pattern>/result</pattern>
 	</decorator>
+	
+	<!-- Test -->
+	<decorator name="testFile" page="web.jsp">
+		<pattern>/testFile</pattern>
+	</decorator>
 
 	<decorator name="home" page="admin.jsp">
 		<pattern>/admin/home</pattern>
