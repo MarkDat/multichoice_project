@@ -33,7 +33,7 @@ public class EditExamController {
 		List<Question> listQuestionDetails= questionDetails.findListQuesByIdExam(idExam);
 		 
 		mav.addObject("listQuestionDetails", listQuestionDetails);
-		
+		mav.addObject("idExam",idExam);
 		
 		return mav;
 	}
@@ -89,6 +89,8 @@ public class EditExamController {
 		String ajaxResponse;
 
 		System.out.println("idq : "+question.getIdQ());
+		
+		
 		
 		QuestionDao questionDao = new QuestionDao();
 		int result = questionDao.deleteQuesById(question.getIdQ());

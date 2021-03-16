@@ -16,9 +16,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wild.daos.impl.ExamDTODao;
+import com.wild.daos.impl.QuestionDao;
 import com.wild.daos.impl.SubjectDao;
 import com.wild.daos.impl.UserMarkDao;
 import com.wild.dtos.ExamDTO;
+import com.wild.models.FileQuestion;
+import com.wild.models.Question;
 import com.wild.models.Subject;
 import com.wild.models.UserMark;
 
@@ -133,5 +136,29 @@ public class HomeController {
 	}
 
 	
+	@RequestMapping(value = "/admin/uploadexcel", method = RequestMethod.POST)
+	@ResponseBody
+	public String postFile(HttpServletRequest req, @RequestBody List<Question> qs) {
+		
+		ModelAndView mav = new ModelAndView("web/detailQuestions");
+//		System.out.println(qs.get(0).getContent());
+//		System.out.println(qs.get(0).getIdExam());
+//		//Chỗ này để add vô db
+//		
+//		
+//		System.out.println(req.getAttribute("idExam"));
+//		
+		QuestionDao qd = new QuestionDao();
+		int result = 0;
+		String ajaxResponse="";
+		result= qd.addListQuestionByIdExam(qs);
+		
+		if(result != 0) {
+			ajaxResponse = "{\"status\":\"SUCCEED\"}";
+		}
+		else
+			ajaxResponse = "{\"status\":\"FAILED\"}";
+		return ajaxResponse;
+	}
 
 }

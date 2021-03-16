@@ -128,17 +128,5 @@ public class HomeController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/testFile", method = RequestMethod.GET)
-	public ModelAndView testFile() {
-		ModelAndView mav = new ModelAndView("web/testGetFile");
-		return mav;
-	}
 	
-	@RequestMapping(value = "/testFile", method = RequestMethod.POST)
-	@ResponseBody
-	public ModelAndView postFile(HttpServletRequest req, @RequestBody List<Question> qs) {
-		ModelAndView mav = new ModelAndView("web/testGetFile");
-		System.out.println(qs.get(0).getContent());
-		return mav;
-	}
 }

@@ -21,8 +21,6 @@
         <div class="card-body">
             <div class="table-responsive">
                 <!-- Content start -->
-
-
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr style="background-color: #DFF0D8;">
@@ -36,6 +34,7 @@
                     </thead>
                     <tbody>
                         <%! int count = 1; %>
+                        
                         <c:forEach var="question" items="${listQuestionDetails}">
                             <tr>
                                 <td><% out.println(count); count++; %></td>
@@ -65,7 +64,11 @@
                 </table>
             </div>
             <div class="mt-2 mb-2 float-right">
+           		 <input type="file" id="fileUpload" class="mr-2" accept=".xls,.xlsx" /><br /><br />
+            	<input type="button" class="btn btn-primary mr-2" id="uploadExcel" Value="send file" />
+            	
                 <a class="btn btn-primary mr-2" href="<c:url value='/admin/tableExamList' />">Back</a>
+                
             </div>
 
 
@@ -145,7 +148,8 @@
                 </div>
             </div>
             <!-- End modal -->
-
+			<script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.3/xlsx.full.min.js"></script>
+ 
             <script>          
                 function handleCheckRadio(data) {
                 	$("#rsA").attr('checked', false);
@@ -331,6 +335,90 @@
             	   
                }
                 
+               
+               /* Phần của Đạt */
+               var selectedFile;
+               var arrObjQuestion=null;
+               
+               document.getElementById("fileUpload").addEventListener("change", function(event) {
+                   selectedFile = event.target.files[0];
+                 });
+               document
+                 .getElementById("uploadExcel")
+                 .addEventListener("click", function() {
+               	  arrObjQuestion=null;
+               	  try{
+               		  if(checkFile(selectedFile["name"])!='xlsx') {
+           					console.log("Must xlsx")
+               	    		return;
+               		  }
+               	  }catch(err){
+               		  console.log("Wrong file !catch")
+               		  return;
+               	  }
+               	 
+                   if (selectedFile) {
+                     console.log("Hi...");
+                     var fileReader = new FileReader();
+                     fileReader.onload = function(event) {
+                       var data = event.target.result;
+
+                       var workbook = XLSX.read(data, {
+                         type: "binary"
+                       });
+                       workbook.SheetNames.forEach(sheet =>{
+                         let rowObject = XLSX.utils.sheet_to_row_object_array(
+                           workbook.Sheets[sheet]
+                         );
+                         let jsonObject = JSON.stringify(rowObject);
+                        /*  document.getElementById("jsonData").innerHTML = jsonObject; */
+                         arrObjQuestion= jsonObject;
+                         console.log(jsonObject);
+                         postDataUser();
+                       });
+                     };
+                     fileReader.readAsBinaryString(selectedFile);
+                   }
+                 });
+              
+               function checkFile(file){
+               	return file.slice((file.lastIndexOf(".") - 1 >>> 0) + 2);
+               }
+               
+               function postDataUser() {
+            	   arrObjQuestion=JSON.parse(arrObjQuestion);
+            	   for (let i = 0 ; i < arrObjQuestion.length;i++) {
+            		   arrObjQuestion[i]["idExam"] = ${idExam};
+            		 }
+            	   
+           		$.ajax({
+           			type: "POST",
+           			contentType: "application/json;charset=utf-8",
+           			url: "uploadexcel",
+           			data: JSON.stringify(arrObjQuestion),
+           			dataType: 'json',
+           			timeout: 100000,
+           			success: function (data) {
+           				if (data.status == 'SUCCEED'){
+           					console.log("Succeed");
+           					Swal.fire({
+                				position: 'top-end',
+                				icon: 'success',
+                				title: 'Your work has been saved',
+                				showConfirmButton: false,
+                				timer: 1500,
+                			});
+                			setTimeout(() => {
+                				location.reload();
+                			}, 1600);
+           				}
+           			},
+           			error: function (e) {
+           				console.log("LOIII")
+           				console.log("ERROR: ", e);
+           			}
+           		});
+           	}
                
             </script>
 
