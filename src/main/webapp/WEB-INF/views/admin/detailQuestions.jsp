@@ -412,6 +412,10 @@
                 				location.reload();
                 			}, 1600);
            				}
+           				if(data.status == 'NOTSAME'){
+           					alert("Đáp án chính xác không trùng với A hoặc B hoặc C hoặc D");
+           					location.reload();
+           				}
            			},
            			error: function (e) {
            				console.log("LOIII")

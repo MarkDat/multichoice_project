@@ -148,16 +148,40 @@ public class HomeController {
 //		
 //		System.out.println(req.getAttribute("idExam"));
 //		
-		QuestionDao qd = new QuestionDao();
+		Boolean checkOK = true;
 		int result = 0;
-		String ajaxResponse="";
-		result= qd.addListQuestionByIdExam(qs);
-		
-		if(result != 0) {
-			ajaxResponse = "{\"status\":\"SUCCEED\"}";
+		for (int i = 0; i < qs.size(); i++) {
+			String rs = qs.get(i).getRs();
+			String rsA = qs.get(i).getRsA();
+			String rsB = qs.get(i).getRsB();
+			String rsC = qs.get(i).getRsC();
+			String rsD = qs.get(i).getRsD();
+			if(!rsA.equals(rs) && !rsB.equals(rs) && !rsC.equals(rs) && !rsD.equals(rs)) {
+				result = -1;
+				checkOK = false;
+			}
 		}
-		else
+		
+		if(checkOK) {
+			QuestionDao qd = new QuestionDao();
+			result= qd.addListQuestionByIdExam(qs);
+		}
+		
+		String ajaxResponse="";
+		
+		switch (result) {
+		case 0:
 			ajaxResponse = "{\"status\":\"FAILED\"}";
+			break;
+		case -1:
+			ajaxResponse = "{\"status\":\"NOTSAME\"}";
+			break;
+		default:
+			ajaxResponse = "{\"status\":\"SUCCEED\"}";
+			break;
+		}
+		
+			
 		return ajaxResponse;
 	}
 
