@@ -54,26 +54,27 @@
 								</u></strong><span>${ques.getContent()}</span>
 								<div class="form-check">
 									<input class="form-check-input" type="radio"
-										name="${ques.getIdQ()}" value=${ques.getRsA() } /> <label
+										name="${ques.getIdQ()}" value="${ques.getRsA() }" /> <label
 										class="form-check-label">${ques.getRsA()}</label>
 								</div>
 								<div class="form-check">
 									<input class="form-check-input" type="radio"
-										name="${ques.getIdQ()}" value=${ques.getRsB() } /> <label
+										name="${ques.getIdQ()}" value="${ques.getRsB() }" /> <label
 										class="form-check-label">${ques.getRsB()}</label>
 								</div>
 								<div class="form-check">
 									<input class="form-check-input" type="radio"
-										name="${ques.getIdQ()}" value=${ques.getRsC() } /> <label
+										name="${ques.getIdQ()}" value="${ques.getRsC() }" /> <label
 										class="form-check-label">${ques.getRsC()}</label>
 								</div>
 								<div class="form-check">
 									<input class="form-check-input" type="radio"
-										name="${ques.getIdQ()}" value=${ques.getRsD() } /> <label
+										name="${ques.getIdQ()}" value="${ques.getRsD() }" /> <label
 										class="form-check-label">${ques.getRsD()}</label>
 								</div>
 							</div>
 						</c:forEach>
+						<input type="hidden" name="idExam" value="${exam.getIdExam()}"/>
 						<%
 						count = 1;
 						%>
