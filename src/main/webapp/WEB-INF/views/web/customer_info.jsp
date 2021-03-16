@@ -18,7 +18,7 @@
 				<h6 class="text-center">Customer Information</h6>
 			</div>
 			<div class="card-body">
-				<form class="px-3 my-3">
+				<form class="px-3 my-3" action="customer_info" method="POST">
 					<div class="row mb-3">
 						<label for="fullname" class="form-label col-3">Fullname</label> <input
 							readonly type="text" class="form-control col-8" id="fullname" />
@@ -42,15 +42,14 @@
 					<div class="row mt-4">
 						<div class="col text-center">
 							<a id="editinfo" type="button"
-								class="btn btn-primary text-white mx-1"> Edit Info </a> <a
-								id="save" type="button"
-								class="btn btn-primary d-none text-white mx-1"> Save </a> <a
-								id="editpass" type="button"
+								class="btn btn-primary text-white mx-1"> Edit Info </a>
+							<button id="save" class="btn btn-primary d-none text-white mx-1"
+								type="submit">Save</button>
+							<a id="editpass" type="submit" name="submit" value="submit"
 								class="btn btn-secondary text-white mx-1"
 								href="/multichoice_project/edit_password"> Edit Password </a>
 						</div>
 					</div>
-				</form>
 			</div>
 		</div>
 		<!-- Edit info -->

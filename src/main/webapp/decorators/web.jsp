@@ -16,6 +16,8 @@
 <!-- Custom styles for this template -->
 <link href="<c:url value='/template/web/css/small-business.css'/>"
 	rel="stylesheet" type="text/css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 	<!-- Header -->
@@ -41,7 +43,6 @@
 		src="<c:url value='/template/web/vendor/jquery/jquery.min.js'/>"></script>
 	<script
 		src="<c:url value='/template/web/vendor/bootstrap/js/bootstrap.bundle.min.js'/>"></script>
-		<script
-		src="<c:url value='/template/web/js/customer.js'/>"></script>
+	<script src="<c:url value='/template/web/js/customer.js'/>"></script>
 </body>
 </html>
