@@ -31,9 +31,10 @@ public class EditExamController {
 		
 		QuestionDao questionDetails = new QuestionDao();
 		List<Question> listQuestionDetails= questionDetails.findListQuesByIdExam(idExam);
-		 
-		mav.addObject("listQuestionDetails", listQuestionDetails);
+		Question getIdExam = questionDetails.getIdExam(idExam);
 		
+		mav.addObject("listQuestionDetails", listQuestionDetails);
+		mav.addObject("getIdExam", getIdExam);
 		
 		return mav;
 	}
@@ -68,6 +69,7 @@ public class EditExamController {
 		System.out.println("rsB : "+question.getRsB());
 		System.out.println("rsC : "+question.getRsC());
 		System.out.println("rsD : "+question.getRsD());
+		System.out.println("rs : "+question.getRs());
 		
 		QuestionDao questionDao = new QuestionDao();
 		int result = questionDao.editQues(question);

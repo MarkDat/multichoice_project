@@ -66,7 +66,6 @@
 			<button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#addModal"
 				data-whatever="@mdo">Add new</button>
 			<button class="btn btn-primary ml-2">Delete item</button>
-			<button class="btn btn-primary ml-2">Close</button>
 		</div>
 
 		<!-- Modal edit-->

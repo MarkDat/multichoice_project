@@ -16,7 +16,7 @@
     <div class="card mb-3">
         <div class="card-header">
             <i class="fas fa-table"></i>
-            <div id="titleQuestion">Đề toán - đề số 1</div>
+            <div id="titleQuestion"> ID EXAM : ${getIdExam.idExam}</div>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -27,9 +27,9 @@
                     <thead>
                         <tr style="background-color: #DFF0D8;">
                             <th style="width: 5%">STT</th>
-                            <th style="width: 15%; text-overflow: " >Mã câu hỏi</th>
+                            <th style="width: 10%; text-overflow: " >Code</th>
                             <th style="width: 33%">Câu hỏi</th>
-                            <th style="width: 20%">Phương án trả lời</th>
+                            <th style="width: 25%">Phương án trả lời</th>
                             <th style="width: 15%">Đáp án</th>
                             <th style="width: 12%">Actions</th>
                         </tr>
@@ -39,7 +39,7 @@
                         <c:forEach var="question" items="${listQuestionDetails}">
                             <tr>
                                 <td><% out.println(count); count++; %></td>
-                                <td>${question.idExam}</td>
+                                <td>${question.idQ}</td>
                                 <td>${question.content}</td>
                                 <td>
                                     <ul class="list-group">
@@ -206,11 +206,9 @@
                     });
                 }
 
-                function checkCheckd(rs, object){
-                	let check = false;
-                	
-
-                	
+                function checkChecked(){
+                	const checkbox = document.querySelector('input[name="rdoEdit"]:checked');
+                	return checkbox.value;
                 	
                 }
 
@@ -229,7 +227,8 @@
                 			"rsB" : exampleRadios2.value,
                 			"rsC" : exampleRadios3.value,
                 			"rsD" : exampleRadios4.value,
-                			"rs" : 
+                			"rs" : checkChecked()
+                			
                 		}),
                 		dataType: 'json',
                 		timeout: 100000,
