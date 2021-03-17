@@ -12,5 +12,5 @@ public interface IUserDao extends GenericDAO<User>{
 	int addRoleUser(String roleCode, String userName);
 	User findUserByEmail(String email);
 	User findUserByUsername(String username);
-	User findByUserInforNameAndPassword(String userName, String password);
+	User findUserByEmailAndPassword(String userName, String password);
 }

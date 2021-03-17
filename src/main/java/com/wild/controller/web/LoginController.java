@@ -34,13 +34,18 @@ public class LoginController extends HttpServlet {
 		HttpSession session = request.getSession();
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
+		
+		
 		User user = new User();
 		user.setEmail(email);
 		user.setPassword(password);
 
 		session.setAttribute("email", email);
 		if (userDao.findByEmailAndPassword(user)) {
-			if (userDao.isActiveUser(user) == 0) {
+			user=null;
+			user= userDao.findUserByEmailAndPassword(email,password);
+			
+			if (user.getStatus() == 0) {
 				session.setAttribute("user", user);
 				
 				return new ModelAndView("redirect:/trang-chu");

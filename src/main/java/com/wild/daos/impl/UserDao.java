@@ -79,12 +79,12 @@ public class UserDao extends AbstractDAO<User> implements IUserDao {
 	}
 
 	@Override
-	public User findByUserInforNameAndPassword(String userName, String password) {
-		StringBuilder sql = new StringBuilder("SELECT * FROM user_details");
-		sql.append(" INNER JOIN role AS r ON r.id = u.roleid");
-		sql.append(" WHERE username = ? AND password = ? AND status = ?");
+	public User findUserByEmailAndPassword(String email, String password) {
+		StringBuilder sql = new StringBuilder("SELECT u.*,r.* FROM user_details u,sub_rl_ud su, role r ");
+		sql.append("WHERE u.iduser=su.iduser And su.idrole=r.idrole and ");
+		sql.append("email=? AND pwd = ?");
 
-		return null;
+		return query(sql.toString(), new UserMapper(), email,password).get(0);
 	}
 
 	public boolean findByEmailAndPassword(User user) {
@@ -95,6 +95,7 @@ public class UserDao extends AbstractDAO<User> implements IUserDao {
 			pst = conn.prepareStatement(SELECT_USERS_SQL);
 			pst.setString(1, user.getEmail());
 			pst.setString(2, user.getPassword());
+			
 			System.out.println(pst);
 			rs = pst.executeQuery();
 			status = rs.next();
