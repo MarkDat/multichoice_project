@@ -8,7 +8,7 @@ public interface IExamDao extends GenericDAO<Exam>{
 	List<Exam> findAll();
 	
 	//Tim de thi theo id mon
-	List<Exam> findExamsBySubjectId(Long idSubject);
+	List<Exam> findExamsBySubjectId(Long idSubject,Long idUser,Boolean isHaveSession);
 	
 	int addNewExam(Exam ex);
 	
