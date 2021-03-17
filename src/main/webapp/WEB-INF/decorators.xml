@@ -24,7 +24,7 @@
 		<pattern>/result</pattern>
 	</decorator>
 	
-
+	
 	<decorator name="home" page="admin.jsp">
 		<pattern>/admin/home</pattern>
 	</decorator>

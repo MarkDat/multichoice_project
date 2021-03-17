@@ -1,18 +1,10 @@
 package com.wild.daos.impl;
 
 import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.List;
 
 import com.wild.daos.IUserDao;
-import com.wild.mapper.UserCheckLoginMapper;
-import com.wild.mapper.UserMapper;
-import com.wild.models.User;
-import com.wild.models.UserCheckLogin;
-import com.wild.mapper.UserMapper;
 import com.wild.models.Role;
 import com.wild.models.User;
 import com.wild.utils.DBConnectionUtil;
@@ -125,7 +117,7 @@ public class UserDao extends AbstractDAO<User> implements IUserDao {
 			rs = pst.executeQuery();
 			if (rs.next()) {
 				user = new User(rs.getLong("iduser"), rs.getString("fullname"), rs.getString("email"),
-						rs.getString("address"), rs.getString("phone"), rs.getString("username"), rs.getString("pwd"),
+						rs.getString("address"), rs.getString("phone"), rs.getString("username"), rs.getString("pwd"),rs.getInt("status"),
 						new Role());
 			}
 		} catch (SQLException e) {
@@ -147,7 +139,7 @@ public class UserDao extends AbstractDAO<User> implements IUserDao {
 			rs = pst.executeQuery();
 			if (rs.next()) {
 				user = new User(rs.getLong("iduser"), rs.getString("fullname"), rs.getString("email"),
-						rs.getString("address"), rs.getString("phone"), rs.getString("username"), rs.getString("pwd"),
+						rs.getString("address"), rs.getString("phone"), rs.getString("username"), rs.getString("pwd"),rs.getInt("status"),
 						new Role());
 			}
 		} catch (SQLException e) {
