@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.wild.constants.CheckAdmin;
 import com.wild.daos.impl.QuestionDao;
 import com.wild.daos.impl.UserMarkDao;
 import com.wild.models.Question;
@@ -23,6 +24,9 @@ public class EditExamController {
 	
 	@RequestMapping(value = "/admin/detailQuestions", method = RequestMethod.GET)
 	public ModelAndView detailQuestions(HttpServletRequest request) {
+		Boolean check = CheckAdmin.checkAdmin(request);
+		if(!check) return new ModelAndView("redirect:/trang-chu");
+		
 		ModelAndView mav = new ModelAndView("admin/detailQuestions");
 		
 		long idExam = Long.parseLong(request.getParameter("idexam"));
@@ -31,10 +35,10 @@ public class EditExamController {
 		
 		QuestionDao questionDetails = new QuestionDao();
 		List<Question> listQuestionDetails= questionDetails.findListQuesByIdExam(idExam);
-		Question getIdExam = questionDetails.getIdExam(idExam);
+		//Question getIdExam = questionDetails.getIdExam(idExam);
 		
 		mav.addObject("listQuestionDetails", listQuestionDetails);
-		mav.addObject("getIdExam", getIdExam);
+		mav.addObject("idExam", idExam);
 		
 		return mav;
 	}
@@ -42,6 +46,9 @@ public class EditExamController {
 	
 	@RequestMapping(value = "/admin/editExam", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
 	public @ResponseBody String editExam(HttpServletRequest request) {
+		Boolean check = CheckAdmin.checkAdmin(request);
+		if(!check) return "";
+		
 		int idQ = Integer.parseInt(request.getParameter("idQ"));
 		System.out.println("id cau hoi: "+idQ);
 		
@@ -61,6 +68,9 @@ public class EditExamController {
 	@RequestMapping(value = "/admin/editExam", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
 	@ResponseBody
 	public String editExam(HttpServletRequest request, @RequestBody Question question) {
+		Boolean check = CheckAdmin.checkAdmin(request);
+		if(!check) return "";
+		
 		String ajaxResponse;
 
 		System.out.println("idq : "+question.getIdQ());
@@ -88,6 +98,9 @@ public class EditExamController {
 	@RequestMapping(value = "/admin/deleteExam", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
 	@ResponseBody
 	public String deleteExam(HttpServletRequest request, @RequestBody Question question) {
+		Boolean check = CheckAdmin.checkAdmin(request);
+		if(!check) return "";
+		
 		String ajaxResponse;
 
 		System.out.println("idq : "+question.getIdQ());

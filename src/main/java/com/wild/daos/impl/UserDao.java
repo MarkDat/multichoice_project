@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
 import com.wild.daos.IUserDao;
+import com.wild.mapper.UserMapper;
 import com.wild.models.Role;
 import com.wild.models.User;
 import com.wild.utils.DBConnectionUtil;

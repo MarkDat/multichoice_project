@@ -47,7 +47,7 @@ public class LoginController extends HttpServlet {
 			
 			if (user.getStatus() == 0) {
 				session.setAttribute("user", user);
-				
+				if(user.getRole().getCode().equals("ADMIN")) return new ModelAndView("redirect:/admin");
 				return new ModelAndView("redirect:/trang-chu");
 			} else {
 				mav.addObject("msg", "Tài khoản đã bị khóa");
