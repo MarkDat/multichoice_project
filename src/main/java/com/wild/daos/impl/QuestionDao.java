@@ -50,13 +50,13 @@ public class QuestionDao extends AbstractDAO<Question> implements IQuestionDao{
 	@Override
 	public int editQues(Question q) {
 		StringBuilder sql = new StringBuilder("UPDATE question SET ");
-		sql.append("modifieddate = ?,content = ?, rsa=?,rsb=?,rsc=?,rsd=?");
+		sql.append("modifieddate = ?,content = ?, rsa=?,rsb=?,rsc=?,rsd=?,rs=?");
 		sql.append("WHERE idq = ?");
 		
 		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date(System.currentTimeMillis());
 		return update(sql.toString(),formatter.format(date),q.getContent(),
-				q.getRsA(),q.getRsB(),q.getRsC(),q.getRsD(), q.getIdQ());
+				q.getRsA(),q.getRsB(),q.getRsC(),q.getRsD(), q.getRs(), q.getIdQ());
 	}
 
 	@Override
@@ -66,6 +66,14 @@ public class QuestionDao extends AbstractDAO<Question> implements IQuestionDao{
 	}
 
 	@Override
+	public Question getIdExam(long idExam) {
+		StringBuilder sql = new StringBuilder("SELECT * FROM `question` WHERE idexam = ?");
+
+		return query(sql.toString(), new QuestionMapper(), idExam).get(0);
+	}
+	
+	
+
 	public int addListQuestionByIdExam(List<Question> lq) {
 		// TODO Auto-generated method stub
 		StringBuilder sql = new StringBuilder("INSERT INTO question ( ");

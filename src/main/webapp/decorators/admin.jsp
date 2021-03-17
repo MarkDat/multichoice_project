@@ -51,7 +51,7 @@ pageEncoding="UTF-8"%> <%@ include file="/common/taglib.jsp"%>
 										
 											<a class="dropdown-item" href="<c:url value='/admin/tableMemberList' />" value="Members list" id="members-list">Members list</a>
 											<a class="dropdown-item" href="<c:url value='/admin/tableExamList' />" value="Exam list" id="exam-list">Exam list</a>
-											<a class="dropdown-item" href="#" value="..." >Link 3</a>
+											<a class="dropdown-item" href="#" value="..." >Test</a>
 										</div>
 										
 									</div>
