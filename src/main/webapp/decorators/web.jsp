@@ -14,7 +14,7 @@
 	rel="stylesheet" type="text/css">
 
 <!-- Custom styles for this template -->
-<link href="<c:url value='/template/web/css/small-business.css'/>"
+<link href="<c:url value='/template/web/css/small_business.css'/>"
 	rel="stylesheet" type="text/css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -32,6 +32,9 @@
 			<!-- Sidebar-Left -->
 			<%@ include file="/common/web/sidebar_left.jsp"%>
 			<!-- Sidebar-Left -->
+			<!-- Sidebar-Right -->
+			<%@ include file="/common/web/sidebar_right.jsp"%>
+			<!-- Sidebar-Right -->
 		</div>
 	</div>
 
