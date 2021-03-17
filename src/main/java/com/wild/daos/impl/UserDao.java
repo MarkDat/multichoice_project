@@ -1,6 +1,8 @@
 package com.wild.daos.impl;
 
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -54,8 +56,27 @@ public class UserDao extends AbstractDAO<User> implements IUserDao {
 		} finally {
 			DBConnectionUtil.close(conn, pst);
 		}
-		if(result != 0)
+		if (result != 0)
 			result = addRoleUser(user.getRole().getCode(), user.getUserName());
+		return result;
+	}
+
+	@Override
+	public int isActiveUser(User user) {
+		final String sql = "SELECT status FROM user_details WHERE email = ?";
+		int result = 1;
+		conn = getConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, user.getEmail());
+			rs = pst.executeQuery();
+			if (rs.next())
+				result = rs.getInt("status");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionUtil.close(conn, pst);
+		}
 		return result;
 	}
 
@@ -68,13 +89,45 @@ public class UserDao extends AbstractDAO<User> implements IUserDao {
 		return null;
 	}
 
+	public boolean findByEmailAndPassword(User user) {
+		boolean status = false;
+		try {
+			conn = DBConnectionUtil.getConnection();
+			String SELECT_USERS_SQL = "SELECT * FROM user_details WHERE email = ? AND pwd = ?";
+			pst = conn.prepareStatement(SELECT_USERS_SQL);
+			pst.setString(1, user.getEmail());
+			pst.setString(2, user.getPassword());
+			System.out.println(pst);
+			rs = pst.executeQuery();
+			status = rs.next();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionUtil.close(conn, pst);
+		}
+		return status;
+	}
+
 	@Override
 	public User findUserByEmail(String email) {
 		String sql = "SELECT * FROM user_details WHERE email = ?";
-		List<User> result = query(sql, new UserMapper(), email);
-		if (result == null || result.size() == 0)
-			return null;
-		return result.get(0);
+		conn = getConnection();
+		User user = null;
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, email);
+			rs = pst.executeQuery();
+			if (rs.next()) {
+				user = new User(rs.getLong("iduser"), rs.getString("fullname"), rs.getString("email"),
+						rs.getString("address"), rs.getString("phone"), rs.getString("username"), rs.getString("pwd"),
+						new Role());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionUtil.close(conn, pst);
+		}
+		return user;
 	}
 
 	@Override
@@ -87,7 +140,9 @@ public class UserDao extends AbstractDAO<User> implements IUserDao {
 			pst.setString(1, username);
 			rs = pst.executeQuery();
 			if (rs.next()) {
-				user = new User(rs.getLong("iduser"), rs.getString("fullname"), rs.getString("email"), rs.getString("address"), rs.getString("phone"), rs.getString("username"), rs.getString("pwd"), rs.getInt("status"),new Role());
+				user = new User(rs.getLong("iduser"), rs.getString("fullname"), rs.getString("email"),
+						rs.getString("address"), rs.getString("phone"), rs.getString("username"), rs.getString("pwd"),
+						new Role());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
