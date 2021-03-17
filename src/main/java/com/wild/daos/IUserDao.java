@@ -7,10 +7,6 @@ import com.wild.models.User;
 public interface IUserDao extends GenericDAO<User>{
 	int editInfor(User user);
 	int editPass(User user);
-<<<<<<< Updated upstream
-=======
-	Long addNewUser(User user);
->>>>>>> Stashed changes
 	int addNewUser(User user);
 	int isActiveUser(User user);
 	int addRoleUser(String roleCode, String userName);
