@@ -16,7 +16,7 @@
     <div class="card mb-3">
         <div class="card-header">
             <i class="fas fa-table"></i>
-            Đề toán - đề số 1
+            <div id="titleQuestion">Đề toán - đề số 1</div>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -25,7 +25,7 @@
                     <thead>
                         <tr style="background-color: #DFF0D8;">
                             <th style="width: 5%">STT</th>
-                            <th style="width: 15%">Mã câu hỏi</th>
+                            <th style="width: 15%; text-overflow: " >Mã câu hỏi</th>
                             <th style="width: 33%">Câu hỏi</th>
                             <th style="width: 20%">Phương án trả lời</th>
                             <th style="width: 15%">Đáp án</th>
@@ -53,7 +53,7 @@
                                     <input type="submit" value="Edit" onclick="getDataExam(${question.idQ})"
                                         class="btn btn-warning mx-1" data-toggle="modal" data-target="#editModal" />
 
-                                    <input type="submit" value="Del" class="btn btn-danger mx-1"  idQ="${question.idQ}" id="buttonDel" onclick="deleteProcess()"/>
+                                    <input type="submit" value="Del" class="btn btn-danger mx-1"  idQ="${question.idQ}" id="buttonDel" onclick="deleteProcess(deleteDataExam, ${question.idQ})"/>
 
 
                                 </td>
@@ -202,8 +202,6 @@
                             	handleCheckRadio(data);
                             }, 500); 
                             
-
-
                         },
                         error: function (e) {
                             console.log("LOIII")
@@ -212,6 +210,13 @@
                     });
                 }
 
+                function checkCheckd(rs, object){
+                	let check = false;
+                	
+
+                	
+                	
+                }
 
 
 
@@ -227,7 +232,8 @@
                 			"rsA" : exampleRadios1.value,
                 			"rsB" : exampleRadios2.value,
                 			"rsC" : exampleRadios3.value,
-                			"rsD" : exampleRadios4.value
+                			"rsD" : exampleRadios4.value,
+                			"rs" : 
                 		}),
                 		dataType: 'json',
                 		timeout: 100000,
@@ -276,15 +282,14 @@
                 	examListEdit(postDataExam);
                 }
                 
-                
-                
-                function deleteDataExam() {
+            
+                function deleteDataExam(idQ) {
                 	$.ajax({
                 		type: "POST",
                 		contentType: "application/json;charset=utf-8",
                 		url: "deleteExam",
                 		data: JSON.stringify({
-                			"idQ" : $("#buttonDel").attr("idQ")
+                			"idQ" : idQ
                 		}),
                 		dataType: 'json',
                 		timeout: 100000,
@@ -302,7 +307,7 @@
                 
                 
                 
-                function examListDelete(callback) {
+                function examListDelete(callback, idQ) {
                 	Swal.fire({
                 		title: 'You are deleting exam',
                 		text: "You won't be able to revert this!",
@@ -313,7 +318,7 @@
                 		confirmButtonText: 'Delete'
                 	}).then((result) => {
                 		if (result.isConfirmed) {
-                			callback();
+                			callback(idQ);
                 			Swal.fire({
                 				position: 'top-end',
                 				icon: 'success',
@@ -330,10 +335,14 @@
                 	})
                 }
 
-               function deleteProcess(){
-            	   examListDelete(deleteDataExam);
+               function deleteProcess(f, idQ){
+            	   examListDelete(f, idQ);
             	   
                }
+               
+
+               
+               
                 
                
                /* Phần của Đạt */
