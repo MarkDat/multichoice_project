@@ -16,6 +16,7 @@
 <!-- Custom styles for this template -->
 <link href="<c:url value='/template/web/css/small-business.css'/>"
 	rel="stylesheet" type="text/css">
+	
 </head>
 <body>
 	<!-- Header -->

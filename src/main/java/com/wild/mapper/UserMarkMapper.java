@@ -18,6 +18,7 @@ public class UserMarkMapper implements RowMapper<UserMark>{
 			u.setFullName(rs.getString("fullname"));
 			u.setPoint(rs.getInt("point"));
 			u.setTimes(rs.getInt("times"));
+			u.setStatus(rs.getInt("status"));
 			return u;
 		} catch (SQLException e) {
 			System.out.println("Loi mapper UserMark");

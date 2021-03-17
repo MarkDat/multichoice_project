@@ -49,8 +49,9 @@
 								<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
 							</div>
 						</td>
-						<td class="form-check d-flex justify-content-center"><button type="button"
-								class="btn btn-info">Info</button></td>
+						<td class="form-check d-flex justify-content-center">
+							<a class="btn btn-info mr-2" href="<c:url value='/admin/detailQuestions?idexam=${list.idExam}' />" value="Info" id="info">Info</a>
+						</td>
 
 					</tr>
 				</c:forEach>
@@ -106,7 +107,9 @@
 												</button>
 												<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 													<c:forEach var="listDistinct" items="${listSubjectDistinct}">
-														<li><a class="dropdown-item" href="#" data-value="${listDistinct.nameSubject}">${listDistinct.nameSubject}</a></li>
+														<li><a class="dropdown-item" href="#"
+																data-value="${listDistinct.nameSubject}">${listDistinct.nameSubject}</a>
+														</li>
 													</c:forEach>
 												</ul>
 											</div>
@@ -134,10 +137,8 @@
 
 
 	<script type="text/javascript">
-		$("dropdown").on("changed.bs.select", 
-		      function(e, clickedIndex, newValue, oldValue) {
-		    console.log(this.value, clickedIndex, newValue, oldValue)
-		});
+	
+	
 	</script>
 </body>
 

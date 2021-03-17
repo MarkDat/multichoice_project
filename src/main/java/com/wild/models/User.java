@@ -10,14 +10,17 @@ public class User  extends BaseModel{
 	private String phone="";
 	private String userName="";
 	private String password="";
+	private int status = 0;
 	private Role role = new Role();
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
 
 
+	
 	public User(Long idUser, String fullName, String email, String address, String phone, String userName,
-			String password, Role role) {
+			String password, int status, Role role) {
+		super();
 		this.idUser = idUser;
 		this.fullName = fullName;
 		this.email = email;
@@ -25,11 +28,13 @@ public class User  extends BaseModel{
 		this.phone = phone;
 		this.userName = userName;
 		this.password = password;
+		this.status = status;
 		this.role = role;
 	}
-
+	
 	public User(String fullName, String email, String address, String phone, String userName,
 			String password, Role role) {
+		super();
 		this.fullName = fullName;
 		this.email = email;
 		this.address = address;
@@ -38,6 +43,20 @@ public class User  extends BaseModel{
 		this.password = password;
 		this.role = role;
 	}
+
+
+
+	public int getStatus() {
+		return status;
+	}
+
+
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+
 
 	public String getUserName() {
 		return userName;

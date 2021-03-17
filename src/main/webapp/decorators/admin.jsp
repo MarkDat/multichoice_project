@@ -77,6 +77,9 @@ pageEncoding="UTF-8"%> <%@ include file="/common/taglib.jsp"%>
 		
 		
 	</div>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<!-- Bootstrap core JavaScript-->
 	<script src="<c:url value='/template/admin/vendor/jquery/jquery.min.js'/>"></script>
 	<script src="<c:url value='/template/admin/vendor/bootstrap/js/bootstrap.bundle.min.js'/>"></script>

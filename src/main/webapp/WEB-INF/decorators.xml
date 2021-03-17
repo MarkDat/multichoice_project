@@ -23,6 +23,7 @@
 	<decorator name="result" page="web.jsp">
 		<pattern>/result</pattern>
 	</decorator>
+	
 
 	<decorator name="home" page="admin.jsp">
 		<pattern>/admin/home</pattern>
@@ -35,8 +36,13 @@
 	<decorator name="table" page="admin.jsp">
 		<pattern>/admin/tableMemberList</pattern>
 	</decorator>
+    
+    <decorator name="table" page="admin.jsp">
+       <pattern>/admin/detailQuestions</pattern>
+    </decorator>
+    
 
+    
 
-
-
+	
 </decorators>

@@ -1,7 +1,6 @@
 package com.wild.controller.admin;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,10 +16,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wild.daos.impl.ExamDTODao;
+import com.wild.daos.impl.QuestionDao;
 import com.wild.daos.impl.SubjectDao;
 import com.wild.daos.impl.UserMarkDao;
 import com.wild.dtos.ExamDTO;
-import com.wild.dtos.TestDTO;
+import com.wild.models.FileQuestion;
+import com.wild.models.Question;
 import com.wild.models.Subject;
 import com.wild.models.UserMark;
 
@@ -57,15 +58,7 @@ public class HomeController {
 
 		List<UserMark> listUser = userMarkDao.findAll();
 		mav.addObject("listUser", listUser);
-//		 
-//		
-//		if(id != null) {
-//			int idUser = Integer.parseInt(request.getParameter("id"));
-//			UserMark userById = userMarkDao.findUserMarkById(idUser); 
-//			mav.addObject("user", userById);
-//			return mav;
-//			
-//		}
+
 
 		return mav;
 	}
@@ -73,7 +66,7 @@ public class HomeController {
 	@RequestMapping(value = "/admin/editu", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
 	public @ResponseBody String edit(HttpServletRequest request) {
 		int idUser = Integer.parseInt(request.getParameter("id"));
-
+		System.out.println("id nguoi dung: "+idUser);
 		UserMarkDao userMarkDao = new UserMarkDao();
 		ObjectMapper mapper = new ObjectMapper();
 		String ajaxResponse = "";
@@ -90,12 +83,105 @@ public class HomeController {
 	@RequestMapping(value = "/admin/editu", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
 	@ResponseBody
 	public String editSubmit(HttpServletRequest req, @RequestBody UserMark um) {
-		System.out.println("CALL FUNCTION POST EDTI");
-		System.out.println(um.getIdUser());
-		System.out.println(um.getAddress());
-		// System.out.println(req.getAttribute("idUser"));
+		String ajaxResponse;
 
-		String ajaxResponse = "{\"status\":\"OK\"}";
+		
+		UserMarkDao userMarkDao = new UserMarkDao();
+		int result = userMarkDao.editListMember(um);
+		
+		if(result != 0) {
+			ajaxResponse = "{\"status\":\"SUCCEED\"}";
+		}
+		else
+			ajaxResponse = "{\"status\":\"FAILED\"}";
+		
+		
+		return ajaxResponse;
+	}
+	
+
+	
+	
+	@RequestMapping(value = "/admin/deleteu", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
+	@ResponseBody
+	public String updateStatusSubmit(HttpServletRequest request, @RequestBody UserMark um) {
+
+		UserMarkDao userMarkDao = new UserMarkDao();
+		String ajaxResponse = "";
+		System.out.println("Id user : "+um.getIdUser());
+		System.out.println("Status user : "+um.getStatus());
+		;
+		
+		
+		int result;
+		if(um.getStatus() == 0) {
+			um.setStatus(1);
+			result = userMarkDao.updateStatusListMember(um);
+		}
+		else {
+			um.setStatus(0);
+			result = userMarkDao.updateStatusListMember(um);
+		}
+		 
+		
+		if(result != 0) {
+			ajaxResponse = "{\"status\":\"SUCCEED\"}";
+		}
+		else
+			ajaxResponse = "{\"status\":\"FAILED\"}";
+		
+		System.out.println("Ket qua cap nhat : "+result);
+		
+		return ajaxResponse;
+	}
+
+	
+	@RequestMapping(value = "/admin/uploadexcel", method = RequestMethod.POST)
+	@ResponseBody
+	public String postFile(HttpServletRequest req, @RequestBody List<Question> qs) {
+		
+		ModelAndView mav = new ModelAndView("web/detailQuestions");
+//		System.out.println(qs.get(0).getContent());
+//		System.out.println(qs.get(0).getIdExam());
+//		//Chỗ này để add vô db
+//		
+//		
+//		System.out.println(req.getAttribute("idExam"));
+//		
+		Boolean checkOK = true;
+		int result = 0;
+		for (int i = 0; i < qs.size(); i++) {
+			String rs = qs.get(i).getRs();
+			String rsA = qs.get(i).getRsA();
+			String rsB = qs.get(i).getRsB();
+			String rsC = qs.get(i).getRsC();
+			String rsD = qs.get(i).getRsD();
+			if(!rsA.equals(rs) && !rsB.equals(rs) && !rsC.equals(rs) && !rsD.equals(rs)) {
+				result = -1;
+				checkOK = false;
+			}
+		}
+		
+		if(checkOK) {
+			QuestionDao qd = new QuestionDao();
+			result= qd.addListQuestionByIdExam(qs);
+		}
+		
+		String ajaxResponse="";
+		
+		switch (result) {
+		case 0:
+			ajaxResponse = "{\"status\":\"FAILED\"}";
+			break;
+		case -1:
+			ajaxResponse = "{\"status\":\"NOTSAME\"}";
+			break;
+		default:
+			ajaxResponse = "{\"status\":\"SUCCEED\"}";
+			break;
+		}
+		
+			
 		return ajaxResponse;
 	}
 

@@ -9,6 +9,7 @@ public class UserMark {
 	private String address="";
 	private int point=0;
 	private int times=0;
+	private int status=0;
 	
 	public UserMark() {
 		// TODO Auto-generated constructor stub
@@ -16,8 +17,12 @@ public class UserMark {
 
 	
 
+
+
+
 	public UserMark(Long idUser, String fullName, String email, String phone, String userName, String address,
-			int point, int times) {
+			int point, int times, int status) {
+		super();
 		this.idUser = idUser;
 		this.fullName = fullName;
 		this.email = email;
@@ -26,23 +31,30 @@ public class UserMark {
 		this.address = address;
 		this.point = point;
 		this.times = times;
-	}
-	
-	public UserMark(String fullName, String phone, String userName, String address,
-			int point, int times) {
-		this.fullName = fullName;
-		this.phone = phone;
-		this.userName = userName;
-		this.address = address;
-		this.point = point;
-		this.times = times;
+		this.status = status;
 	}
 
-	
-	public double averagePointByTimes() {
-		return (this.point/this.times);
-		
+
+
+
+
+
+	public int getStatus() {
+		return status;
 	}
+
+
+
+
+
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+
+
+
 
 
 	public Long getIdUser() {
