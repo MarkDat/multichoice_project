@@ -57,7 +57,6 @@ public class HomeController {
 		
 		
 		mav.addObject("listSup", listSup);
-		mav.addObject("listGrade", listGrade);
 //		Exam objEx = new Exam(null, 3L, "Đề thi hóa phần hữu cơ");
 //		System.out.println("OK add ? "+ex.addNewExam(objEx));
 		
@@ -150,11 +149,6 @@ public class HomeController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView loginPage() {
-		ModelAndView mav = new ModelAndView("pages_other/login");
-		return mav;
-	}
 
 	@RequestMapping(value = "/customer_info", method = RequestMethod.GET)
 	public ModelAndView getCusInfoPage() {
