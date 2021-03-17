@@ -5,13 +5,15 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Customer Info</title>
+
+<title>Customer Infor</title>
 </head>
 
 <body>
 
 	<!-- Content -->
 	<div class="col-lg-7  justify-content-end">
+
 		<!-- Edit info -->
 		<div class="card border-color mb-3">
 			<div class="card-header border-color box-color">
@@ -48,6 +50,7 @@
 							<a id="editpass" type="submit" name="submit" value="submit"
 								class="btn btn-secondary text-white mx-1"
 								href="/multichoice_project/edit_password"> Edit Password </a>
+
 						</div>
 					</div>
 			</div>
@@ -136,6 +139,7 @@
 			</div>
 		</div>
 		<!-- History -->
+
 	</div>
 	<!-- Content -->
 

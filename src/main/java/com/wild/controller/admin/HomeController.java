@@ -16,9 +16,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wild.daos.impl.ExamDTODao;
+import com.wild.daos.impl.QuestionDao;
 import com.wild.daos.impl.SubjectDao;
 import com.wild.daos.impl.UserMarkDao;
 import com.wild.dtos.ExamDTO;
+import com.wild.models.FileQuestion;
+import com.wild.models.Question;
 import com.wild.models.Subject;
 import com.wild.models.UserMark;
 
@@ -133,5 +136,53 @@ public class HomeController {
 	}
 
 	
+	@RequestMapping(value = "/admin/uploadexcel", method = RequestMethod.POST)
+	@ResponseBody
+	public String postFile(HttpServletRequest req, @RequestBody List<Question> qs) {
+		
+		ModelAndView mav = new ModelAndView("web/detailQuestions");
+//		System.out.println(qs.get(0).getContent());
+//		System.out.println(qs.get(0).getIdExam());
+//		//Chỗ này để add vô db
+//		
+//		
+//		System.out.println(req.getAttribute("idExam"));
+//		
+		Boolean checkOK = true;
+		int result = 0;
+		for (int i = 0; i < qs.size(); i++) {
+			String rs = qs.get(i).getRs();
+			String rsA = qs.get(i).getRsA();
+			String rsB = qs.get(i).getRsB();
+			String rsC = qs.get(i).getRsC();
+			String rsD = qs.get(i).getRsD();
+			if(!rsA.equals(rs) && !rsB.equals(rs) && !rsC.equals(rs) && !rsD.equals(rs)) {
+				result = -1;
+				checkOK = false;
+			}
+		}
+		
+		if(checkOK) {
+			QuestionDao qd = new QuestionDao();
+			result= qd.addListQuestionByIdExam(qs);
+		}
+		
+		String ajaxResponse="";
+		
+		switch (result) {
+		case 0:
+			ajaxResponse = "{\"status\":\"FAILED\"}";
+			break;
+		case -1:
+			ajaxResponse = "{\"status\":\"NOTSAME\"}";
+			break;
+		default:
+			ajaxResponse = "{\"status\":\"SUCCEED\"}";
+			break;
+		}
+		
+			
+		return ajaxResponse;
+	}
 
 }

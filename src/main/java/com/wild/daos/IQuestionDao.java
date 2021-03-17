@@ -6,7 +6,9 @@ import com.wild.models.Question;
 
 public interface IQuestionDao extends GenericDAO<Question>{
 		List<Question> findListQuesByIdExam(Long exam);
-		int addNewQuesByIdExam(Question qs);
+		Long addNewQuesByIdExam(Question qs);
 		int deleteQuesById(Long idQ);
 		int editQues(Question qModel);
+		Question editQuesById(int idQ);
+		int addListQuestionByIdExam(List<Question> lQ);
 }

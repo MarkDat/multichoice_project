@@ -14,10 +14,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.wild.daos.impl.ExamDTODao;
 import com.wild.daos.impl.ExamDao;
 import com.wild.daos.impl.QuestionDao;
+
 import com.wild.daos.impl.SubjectDao;
 import com.wild.daos.impl.UserDao;
+import com.wild.daos.impl.UserMarkDao;
 import com.wild.models.Exam;
 import com.wild.models.Question;
 import com.wild.models.Subject;
@@ -28,9 +31,36 @@ public class HomeController {
 	@RequestMapping(value = "/trang-chu", method = RequestMethod.GET)
 	public ModelAndView homePage() {
 		ModelAndView mav = new ModelAndView("web/home");
+		QuestionDao qs = new QuestionDao();
+		ExamDTODao exd = new ExamDTODao();
+		ExamDao ex = new ExamDao();
+		// List<Grade> grades = a.getAll();
+		// List<Question> q = qs.findListQuesByIdExam(1L);
+		// List<Exam> q = ex.findExamsBySubjectId(4L);
+
 		SubjectDao sd = new SubjectDao();
+
+		UserMarkDao umd = new UserMarkDao();
+	//	RankUserDao rud = new RankUserDao();
+//		UserDao ud  = new UserDao();
+//		List<Grade> grades = a.getAll();
+		//List<Question> q = qs.findListQuesByIdExam(1L);
+		//List<Exam> q = ex.findExamsBySubjectId(4L);
+		
+//		for (RankUser q : rud.findAll()) {
+//			System.out.println(q.getName()+" "+q.getTotalMark());
+//		}
+//		
+//
 		List<Subject> listSup = sd.findAll();
+		
+		
 		mav.addObject("listSup", listSup);
+//		Exam objEx = new Exam(null, 3L, "Đề thi hóa phần hữu cơ");
+//		System.out.println("OK add ? "+ex.addNewExam(objEx));
+		
+		
+		
 		return mav;
 	}
 
@@ -118,11 +148,7 @@ public class HomeController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView loginPage() {
-		ModelAndView mav = new ModelAndView("pages_other/login");
-		return mav;
-	}
+	
 
 	@RequestMapping(value = "/customer_info", method = RequestMethod.GET)
 	public ModelAndView getCusInfoPage() {
@@ -153,4 +179,6 @@ public class HomeController {
 		ModelAndView mav = new ModelAndView("web/edit_password");
 		return mav;
 	}
+	
+	
 }
