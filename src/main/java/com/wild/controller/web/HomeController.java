@@ -1,9 +1,7 @@
 package com.wild.controller.web;
 
-import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wild.daos.impl.ExamDTODao;
@@ -19,8 +16,11 @@ import com.wild.daos.impl.ExamDao;
 import com.wild.daos.impl.QuestionDao;
 
 import com.wild.daos.impl.SubjectDao;
+<<<<<<< HEAD
 import com.wild.daos.impl.UserDao;
 import com.wild.daos.impl.UserMarkDao;
+=======
+>>>>>>> parent of 67ce972 (get data uer infor form web)
 import com.wild.models.Exam;
 import com.wild.models.Question;
 import com.wild.models.Subject;
@@ -156,23 +156,13 @@ public class HomeController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/customer_info", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
-	@ResponseBody
-	public ModelAndView posttCusInfoPage(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		ModelAndView mav = new ModelAndView("web/customer_info");
-
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-	
-		UserDao ex = new UserDao();
-
-		System.out.println(request.getParameter("fullname"));
-		System.out.println(request.getParameter("email"));
-		System.out.println(request.getParameter("address"));
-		System.out.println(request.getParameter("phone"));
-		return mav;
-	}
+//	@RequestMapping(value = "/customer_info", method = RequestMethod.POST)
+//	public ModelAndView postCusInfoPage(@RequestParam(required = false, name = "email") String email, HttpServletRequest request,
+//			HttpServletResponse response) {
+//		ModelAndView mav = new ModelAndView("web/result");
+//		System.out.println(request.getParameter("email"));
+//		return mav;
+//	}
 
 	@RequestMapping(value = "/edit_password", method = RequestMethod.GET)
 	public ModelAndView editPassPage() {

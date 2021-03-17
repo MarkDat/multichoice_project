@@ -23,22 +23,22 @@
 				<form class="px-3 my-3" action="customer_info" method="POST">
 					<div class="row mb-3">
 						<label for="fullname" class="form-label col-3">Fullname</label> <input
-							readonly type="text" class="form-control col-8" id="fullname" name="fullname" />
+							readonly type="text" class="form-control col-8" id="fullname" />
 						<label class="required col" style="color: red">*</label>
 					</div>
 					<div class="row mb-3">
 						<label for="email" class="form-label col-3">Email</label> <input
-							readonly type="email" class="form-control col-8" id="email" name="email"/> <label
+							readonly type="email" class="form-control col-8" id="email" /> <label
 							class="required col" style="color: red">*</label>
 					</div>
 					<div class="row mb-3">
 						<label for="address" class="form-label col-3">Address</label> <input
-							readonly type="text" class="form-control col-8" id="address" name="address" />
+							readonly type="text" class="form-control col-8" id="address" />
 						<label class="required col" style="color: red">*</label>
 					</div>
 					<div class="row mb-3">
 						<label for="phone" class="form-label col-3">Phone</label> <input
-							readonly type="text" class="form-control col-8" id="phone" name="phone"/> <label
+							readonly type="text" class="form-control col-8" id="phone" /> <label
 							class="required col" style="color: red">*</label>
 					</div>
 					<div class="row mt-4">

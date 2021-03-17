@@ -45,7 +45,7 @@
 								test="${ q.getRsA().equals(q.getRs()) && q.getChoseA() or 
 										q.getRsB().equals(q.getRs()) && q.getChoseB() or
 										q.getRsC().equals(q.getRs()) && q.getChoseC() or
-										q.getRsD().equals(q.getRs()) && q.getChoseD()}">
+										q.getRsD().equals(q.getRs()) && q.getChoseB()}">
 								<strong class="text-success"> <u>CÂU HỎI <%=count++%>:
 								</u>
 								</strong>
