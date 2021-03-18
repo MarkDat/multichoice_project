@@ -46,7 +46,7 @@
 						<td>${list.nameGrade}</td>
 						<td>
 							<div class="form-check d-flex justify-content-center">
-								<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+								<input class="form-check-input" type="checkbox" value="${list.idExam}" name="rdoDelete" id="flexCheckDefault">
 							</div>
 						</td>
 						<td class="form-check d-flex justify-content-center">
@@ -63,9 +63,9 @@
 
 		</table>
 		<div class=" mb-2 mt-2 d-flex justify-content-end">
-			<button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#addModal"
-				data-whatever="@mdo">Add new</button>
-			<button class="btn btn-primary ml-2">Delete item</button>
+			<input type="submit" class="btn btn-primary ml-2" data-toggle="modal" data-target="#addModal"
+				data-whatever="@mdo" value="Add new"/>
+			<input type="button" class="btn btn-primary ml-2" id="deleteButton" onclick="deleteProcess()" value="Delete Item"/>
 		</div>
 
 		<!-- Modal edit-->
@@ -74,7 +74,7 @@
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+						<h5 class="modal-title" id="exampleModalLabel">Add New Exam	</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -83,9 +83,9 @@
 						<form>
 							<div class="form-group row">
 								<div class="form-group row">
-									<label for="inputEmail3" class="col-sm-5 col-form-label">Nhập tên đề thi</label>
+									<label for="inputEmail3" class="col-sm-5 col-form-label" >Nhập tên đề thi</label>
 									<div class="col-sm-7">
-										<input type="email" class="form-control" id="inputEmail3"
+										<input type="email" class="form-control" id="inputSubject"
 											placeholder="Tên đề thi">
 									</div>
 								</div>
@@ -96,32 +96,21 @@
 										<legend class="col-form-label col-sm-5 pt-0">Chọn môn</legend>
 
 										<div class="col-sm-7">
-
-											<div class="dropdown col-sm-5 ml-2">
-												<button class="btn btn-light dropdown-toggle" type="button"
-													id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
-													aria-expanded="true">
-													Subject name
-													<span class="caret"></span>
-												</button>
-												<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-													<c:forEach var="listDistinct" items="${listSubjectDistinct}">
-														<li><a class="dropdown-item" href="#"
-																data-value="${listDistinct.nameSubject}">${listDistinct.nameSubject}</a>
-														</li>
-													</c:forEach>
-												</ul>
-											</div>
-
+												<div>
+													<select class="form-control mr-12" style="width: 200px;" name="listSubjects">
+														<option id="" value="Choose your subject" selected>Choose your subject</option>
+														<c:forEach var="listDistinct" items="${listSubjectDistinct}">
+													  		<option value="${listDistinct.idSubject}" id="selectOption">${listDistinct.nameSubject}</option>
+													  	</c:forEach>
+													</select>	
+												</div>
 										</div>
 									</div>
 								</fieldset>
 							</div>
 							<div class="modal-footer">
-
-								<button type="submit" class="btn">
-									<a class="btn btn-outline-primary" href="#">Submit</a>
-								</button>
+								<button type="button" class="btn btn-outline-primary" data-dismiss="modal" value="Add"
+									onclick="addExamTableProcess()">Add</button>
 							</div>
 						</form>
 					</div>
@@ -135,8 +124,151 @@
 	</form>
 
 
-	<script type="text/javascript">
+	<script>
 	
+	
+		var arrayValues = [];
+		function checkChecked(){
+	    	const checkbox = document.querySelectorAll('input[name="rdoDelete"]:checked');
+	    	
+	    	for (let i = 0; i < checkbox.length; i++) {
+	    		  let item = checkbox[i].value;
+	    		  arrayValues.push(item);
+	    	}
+	    	
+	    	console.log(arrayValues);
+	    }
+		
+		function convertArrayToArrayObject(arr){
+			for (let i = 0; i < arr.length; i++) {
+				arr[i] = {"idExam":arr[i]};
+	    	}
+			return arr;
+		}
+		
+		
+		 function deleteCheckedItems() {
+			checkChecked();
+			arrayValues= convertArrayToArrayObject(arrayValues);
+			console.log(arrayValues);
+         	$.ajax({
+         		type: "POST",
+         		contentType: "application/json;charset=utf-8",
+         		url: "deleteExamItems",
+         		data: JSON.stringify(arrayValues),
+         		dataType: 'json',
+         		timeout: 100000,
+         		success: function (data) {
+         			if (data.status == 'SUCCEED')
+         				console.log("Succeed");
+
+         		},
+         		error: function (e) {
+         			console.log("LOIII")
+         			console.log("ERROR: ", e);
+         		}
+         	});
+         }
+		 
+		 
+		 function examListDelete(callback, idQ) {
+         	Swal.fire({
+         		title: 'You are deleting exam',
+         		text: "You won't be able to revert this!",
+         		icon: 'warning',
+         		showCancelButton: true,
+         		confirmButtonColor: '#3085d6',
+         		cancelButtonColor: '#d33',
+         		confirmButtonText: 'Delete'
+         	}).then((result) => {
+         		if (result.isConfirmed) {
+         			callback(idQ);
+         			Swal.fire({
+         				position: 'top-end',
+         				icon: 'success',
+         				title: 'Your work has been saved',
+         				showConfirmButton: false,
+         				timer: 1500,
+         			});
+         			setTimeout(() => {
+         				location.reload();
+         			}, 1600);
+
+
+         		}
+         	})
+         }
+		 
+		 function deleteProcess(){
+			 examListDelete(deleteCheckedItems); 
+         }
+		 
+		 
+		 /*  */
+		 /*  */
+		 function postDataExamTable() {
+
+			$.ajax({
+				type: "POST",
+				contentType: "application/json;charset=utf-8",
+				url: "addNewExamTable",
+				data: JSON.stringify({
+					"idSubject" : $('select[name=listSubjects] option').filter(':selected').val(),
+					"titleExam": inputSubject.value,
+					"nameSubject" : $('select[name=listSubjects] option').filter(':selected').text()
+				}),
+				dataType: 'json',
+				timeout: 100000,
+				success: function (data) {
+					if (data.status == 'SUCCEED')
+						console.log("Succeed");
+
+				},
+				error: function (e) {
+					console.log("LOIII")
+					console.log("ERROR: ", e);
+				}
+			});
+		}
+
+		function addExamTable(callback) {
+			Swal.fire({
+				title: 'You are adding exam to table ?',
+				text: "You won't be able to revert this!",
+				icon: 'info',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Add'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					callback();
+					Swal.fire({
+						position: 'top-end',
+						icon: 'success',
+						title: 'Your work has been saved',
+						showConfirmButton: false,
+						timer: 1500,
+					});
+					setTimeout(() => {
+						location.reload();
+					}, 1600);
+
+
+				}
+			})
+		}
+
+		function addExamTableProcess() {
+			addExamTable(postDataExamTable);
+		};
+		 
+		 
+		 
+		 
+		 
+		 
+		 
 	
 	</script>
 </body>

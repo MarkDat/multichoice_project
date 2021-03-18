@@ -22,9 +22,9 @@ public class SubjectDao extends AbstractDAO<Subject> implements ISubjectDao{
 	}
 
 	@Override
-	public List<Subject> listDistinctSubject() {
+	public List<Subject> listSubject() {
 		// TODO Auto-generated method stub
-		String sql = "SELECT DISTINCT * FROM `subject` WHERE 1";
+		String sql = "SELECT * FROM `subject` WHERE 1";
 		return query(sql, new SubjectMapper());
 	}
 

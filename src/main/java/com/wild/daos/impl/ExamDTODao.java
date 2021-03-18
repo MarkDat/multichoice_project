@@ -1,5 +1,7 @@
 package com.wild.daos.impl;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import com.wild.daos.IExamDTO;
@@ -35,6 +37,16 @@ public class ExamDTODao extends AbstractDAO<ExamDTO> implements IExamDTO{
 	}
 
 	
+	@Override
+	public long addNewExam(ExamDTO examDTO) {
+		StringBuilder sql = new StringBuilder("INSERT INTO exam (");
+		sql.append("idsubject,createddate,modifieddate,titleexam)");
+		sql.append(" VALUES(?,?,?,? )");
+		
+		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date(System.currentTimeMillis());
+		return insert(sql.toString(), examDTO.getIdSubject(),formatter.format(date),formatter.format(date) ,examDTO.getTitleExam());
+	}
 
 	
 }
