@@ -15,6 +15,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wild.daos.impl.ExamDao;
 import com.wild.constants.CheckAdmin;
+import com.wild.constants.CheckAdmin;
+import com.wild.daos.impl.ExamDao;
 import com.wild.daos.impl.QuestionDao;
 import com.wild.daos.impl.UserMarkDao;
 import com.wild.models.Question;
@@ -35,12 +37,11 @@ public class EditExamController {
 		System.out.println("Day la id exam : " + idExam);
 		
 		QuestionDao questionDetails = new QuestionDao();
-		List<Question> listQuestionDetails= questionDetails.findListQuesByIdExam(idExam);
-		Question getIdExam = questionDetails.getIdExam(idExam);
-		
+		List<Question> listQuestionDetails = questionDetails.findListQuesByIdExam(idExam);
+
 		mav.addObject("listQuestionDetails", listQuestionDetails);
-		mav.addObject("getIdExam", getIdExam);
-		
+		mav.addObject("idExam", idExam);
+
 		return mav;
 	}
 	
