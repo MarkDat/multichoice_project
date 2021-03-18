@@ -3,13 +3,14 @@
 	
 <%@page import="com.wild.daos.impl.RankUserDao" %>
 <%@page import="java.util.List"%>
+<%@page import="com.wild.models.RankUser"%>
 <!-- Rank -->
 <div class="col-lg-3 order-lg-first">
 	<div class="card border-color mb-3">
 		<div class="card-header border-color box-color">
 			<%
 				RankUserDao rud = new RankUserDao();
-				
+				List<RankUser> l = rud.findAll();
 			%>
 			<h6 class="text-center">Vinh danh bảng vàng</h6>
 		</div>
@@ -17,23 +18,28 @@
 			<table class="table">
 				<tr class="table-danger">
 					<td>No.1</td>
-					<td>Songoku</td>
-					<td>100</td>
+					<td><%out.print(l.get(0).getName());  %></td>
+					<td><%out.print(l.get(0).getTotalMark()); %></td>
 				</tr>
 				<tr class="table-warning">
 					<td>No.2</td>
-					<td>Beerus</td>
-					<td>98</td>
+					<td><%out.print(l.get(1).getName());  %></td>
+					<td><%out.print(l.get(1).getTotalMark()); %></td>
 				</tr>
 				<tr class="table-success">
 					<td>No.3</td>
-					<td>Picolo</td>
-					<td>97</td>
+					<td><%out.print(l.get(2).getName());  %></td>
+					<td><%out.print(l.get(2).getTotalMark()); %></td>
 				</tr>
 				<tr class="table-info">
 					<td>No.4</td>
-					<td>Vegeta</td>
-					<td>97</td>
+					<td><%out.print(l.get(3).getName());  %></td>
+					<td><%out.print(l.get(3).getTotalMark()); %></td>
+				</tr>
+				<tr class="table-info">
+					<td>No.5</td>
+					<td><%out.print(l.get(4).getName());  %></td>
+					<td><%out.print(l.get(4).getTotalMark()); %></td>
 				</tr>
 			</table>
 		</div>

@@ -17,8 +17,15 @@ public class ExamDao extends AbstractDAO<Exam> implements IExamDao{
 	}
 
 	@Override
-	public List<Exam> findExamsBySubjectId(Long idSubject) {
-		String sql = "SELECT * FROM `exam` WHERE idsubject=?";
+	public List<Exam> findExamsBySubjectId(Long idSubject,Long idUser,Boolean isHaveSession) {
+		String sql="";
+		if(isHaveSession) {
+			System.out.println(idUser);
+			StringBuilder sq = new StringBuilder("SELECT * from exam WHERE NOT EXISTS (SELECT idexam FROM result WHERE ");
+			sq.append("exam.idexam = result.idexam AND result.iduser=?) AND idsubject = ?");
+			return query(sq.toString(),new ExamMapper(),idUser,idSubject);
+		}
+		sql= "SELECT * FROM `exam` WHERE idsubject=?";
 		return query(sql,new ExamMapper(),idSubject);
 	}
 

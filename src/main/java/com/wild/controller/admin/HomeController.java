@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.wild.constants.CheckAdmin;
 import com.wild.daos.impl.ExamDTODao;
 import com.wild.daos.impl.QuestionDao;
 import com.wild.daos.impl.SubjectDao;
@@ -27,15 +28,37 @@ import com.wild.models.UserMark;
 
 @Controller(value = "homeControllerOfAdmin")
 public class HomeController {
-
+	
+	public HomeController() {
+		// TODO Auto-generated constructor stub
+		
+	}
+	
+	@RequestMapping(value = "/admin", method = RequestMethod.GET)
+	public ModelAndView homePage0(HttpServletRequest res) {
+		Boolean check = CheckAdmin.checkAdmin(res);
+		if(!check) return new ModelAndView("redirect:/trang-chu");
+		
+		
+		ModelAndView mav = new ModelAndView("admin/tableMemberList");
+		return mav;
+	}
 	@RequestMapping(value = "/admin/home", method = RequestMethod.GET)
-	public ModelAndView homePage() {
-		ModelAndView mav = new ModelAndView("admin/home");
+	public ModelAndView homePage(HttpServletRequest res) {
+		Boolean check = CheckAdmin.checkAdmin(res);
+		if(!check) return new ModelAndView("redirect:/trang-chu");
+		
+		
+		ModelAndView mav = new ModelAndView("admin/tableMemberList");
 		return mav;
 	}
 
 	@RequestMapping(value = "/admin/tableExamList", method = RequestMethod.GET)
-	public ModelAndView tablePage() {
+	public ModelAndView tablePage(HttpServletRequest res) {
+		Boolean check = CheckAdmin.checkAdmin(res);
+		if(!check) return new ModelAndView("redirect:/trang-chu");
+		
+		
 		ModelAndView mav = new ModelAndView("admin/tableExamList");
 
 		ExamDTODao listExam = new ExamDTODao();
@@ -52,6 +75,9 @@ public class HomeController {
 	@RequestMapping(value = "/admin/tableMemberList", method = RequestMethod.GET)
 	public ModelAndView memberList(@RequestParam(required = false, name = "id") String id, HttpServletRequest request,
 			HttpServletResponse response) {
+		Boolean check = CheckAdmin.checkAdmin(request);
+		if(!check) return new ModelAndView("redirect:/trang-chu");
+		
 		ModelAndView mav = new ModelAndView("admin/tableMemberList");
 
 		UserMarkDao userMarkDao = new UserMarkDao();
@@ -65,6 +91,10 @@ public class HomeController {
 
 	@RequestMapping(value = "/admin/editu", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
 	public @ResponseBody String edit(HttpServletRequest request) {
+		
+		Boolean check = CheckAdmin.checkAdmin(request);
+		if(!check) return "";
+		
 		int idUser = Integer.parseInt(request.getParameter("id"));
 		System.out.println("id nguoi dung: "+idUser);
 		UserMarkDao userMarkDao = new UserMarkDao();
@@ -83,6 +113,9 @@ public class HomeController {
 	@RequestMapping(value = "/admin/editu", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
 	@ResponseBody
 	public String editSubmit(HttpServletRequest req, @RequestBody UserMark um) {
+		Boolean check = CheckAdmin.checkAdmin(req);
+		if(!check) return "";
+		
 		String ajaxResponse;
 
 		
@@ -105,13 +138,13 @@ public class HomeController {
 	@RequestMapping(value = "/admin/deleteu", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
 	@ResponseBody
 	public String updateStatusSubmit(HttpServletRequest request, @RequestBody UserMark um) {
-
+		Boolean check = CheckAdmin.checkAdmin(request);
+		if(!check) return "";
+		
 		UserMarkDao userMarkDao = new UserMarkDao();
 		String ajaxResponse = "";
 		System.out.println("Id user : "+um.getIdUser());
 		System.out.println("Status user : "+um.getStatus());
-		;
-		
 		
 		int result;
 		if(um.getStatus() == 0) {
@@ -139,6 +172,8 @@ public class HomeController {
 	@RequestMapping(value = "/admin/uploadexcel", method = RequestMethod.POST)
 	@ResponseBody
 	public String postFile(HttpServletRequest req, @RequestBody List<Question> qs) {
+		Boolean check = CheckAdmin.checkAdmin(req);
+		if(!check) return "";
 		
 		ModelAndView mav = new ModelAndView("web/detailQuestions");
 //		System.out.println(qs.get(0).getContent());

@@ -1,7 +1,7 @@
 <%@page import="java.util.List"%>
 <%@page import="com.wild.daos.impl.GradeDao"%>
 <%@page import="com.wild.models.Grade"%>
-
+<%@page import="com.wild.models.User"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -73,15 +73,17 @@
 					<button type="button"
 						class="btn btn-outline-secondary dropdown-toggle"
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Locdeptraino1</button>
+						<% User u = (User)session.getAttribute("user");
+							if(u==null) out.print("Hi ! There");	
+							out.print(u.getFullName());
+						%></button>
 					<div class="dropdown-menu ">
 						<a class="dropdown-item "
 							href="/multichoice_project/customer_info">More Infomation</a> <a
 							class="dropdown-item " href="#">History</a> <a
 							class="dropdown-item " href="#">Rank</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item " href="/multichoice_project/login">Log
-							out</a>
+						<a class="dropdown-item " href="/multichoice_project/logout">Log out</a>
 					</div>
 				</div>
 			</div>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="/common/taglib.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +10,7 @@
 </head>
 <body>
 	<!-- Content -->
+
 	<div class="col-lg-7">
 		<div class="row d-flex justify-content-around">
 			<!-- box card -->
@@ -43,7 +45,7 @@
 								test="${ q.getRsA().equals(q.getRs()) && q.getChoseA() or 
 										q.getRsB().equals(q.getRs()) && q.getChoseB() or
 										q.getRsC().equals(q.getRs()) && q.getChoseC() or
-										q.getRsD().equals(q.getRs()) && q.getChoseB()}">
+										q.getRsD().equals(q.getRs()) && q.getChoseD()}">
 								<strong class="text-success"> <u>CÂU HỎI <%=count++%>:
 								</u>
 								</strong>
