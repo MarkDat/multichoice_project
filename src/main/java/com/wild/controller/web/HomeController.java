@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.wild.daos.impl.ExamDTODao;
 import com.wild.daos.impl.ExamDao;
 import com.wild.daos.impl.QuestionDao;
+import com.wild.daos.impl.ResultDao;
 import com.wild.daos.impl.SubjectDao;
 import com.wild.daos.impl.UserDao;
 import com.wild.daos.impl.UserMarkDao;
@@ -80,8 +82,9 @@ public class HomeController {
 		ExamDao ex = new ExamDao();
 
 		long idSup = Long.parseLong(request.getParameter("id"));
-
-		List<Exam> listExam = ex.findExamsBySubjectId(idSup);
+		User user = (User) request.getSession().getAttribute("user");
+		
+		List<Exam> listExam = ex.findExamsBySubjectId(idSup,user==null? 0L:user.getIdUser(),user==null?false:true);
 		mav.addObject("listExam", listExam);
 		return mav;
 	}
@@ -116,13 +119,15 @@ public class HomeController {
 		Exam exam = ex.findExamById(idEx);
 
 		float resultMark = 0;
-		float markOfEachQ = listQuestion.size() / 10;
+		float markOfEachQ = (float) Math.round(1.0*10/listQuestion.size() * 10) / 10;
+		System.out.println(markOfEachQ);
 		int countResult = 0;
 
 		for (int i = 0; i < listQuestion.size(); i++) {
 			String resultOfQ = request.getParameter(listQuestion.get(i).getIdQ() + "");
 			if (listQuestion.get(i).getRs().equals(resultOfQ)) {
 				resultMark += markOfEachQ;
+				System.out.println(resultMark);
 				countResult++;
 			}
 			if (listQuestion.get(i).getRsA().equals(resultOfQ))
@@ -136,7 +141,19 @@ public class HomeController {
 		}
 
 		System.out.println("Tổng kết điểm : " + resultMark);
-
+		resultMark = resultMark>10 ? 10:resultMark;
+		//Check session to add db
+		
+		User user = (User) request.getSession().getAttribute("user");
+		if(user!=null) {
+			ResultDao rd = new ResultDao();
+			int rowInsert = rd.addResutlByIdExam(idEx, user.getIdUser(),resultMark);
+			System.out.println("Đã thêm đc: "+rowInsert);
+			//rd.addResutlByIdExam(idEx, user.getIdUser(), resultMark);
+			System.out.println("Nộp bài nhưng có id "+user.getIdUser());
+		}
+			
+			
 		mav.addObject("mark", resultMark);
 		mav.addObject("countResult", countResult);
 		mav.addObject("listQuestion", listQuestion);

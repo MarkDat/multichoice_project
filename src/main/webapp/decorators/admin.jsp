@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%> <%@ include file="/common/taglib.jsp"%>
-
 <!DOCTYPE html>
 <html>
 
 <head>
 	<meta charset="UTF-8" />
 	<title>Trang chủ</title>
-
+	
 	<!-- Custom fonts for this template-->
 	<link href="<c:url value='/template/admin/vendor/fontawesome-free/css/all.min.css'/>" rel="stylesheet"
 		type="text/css" />
@@ -51,7 +50,7 @@ pageEncoding="UTF-8"%> <%@ include file="/common/taglib.jsp"%>
 										
 											<a class="dropdown-item" href="<c:url value='/admin/tableMemberList' />" value="Members list" id="members-list">Members list</a>
 											<a class="dropdown-item" href="<c:url value='/admin/tableExamList' />" value="Exam list" id="exam-list">Exam list</a>
-											<a class="dropdown-item" href="#" value="..." >Link 3</a>
+											<a class="dropdown-item" href="#" value="..." >Test</a>
 										</div>
 										
 									</div>

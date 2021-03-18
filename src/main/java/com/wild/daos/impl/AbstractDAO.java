@@ -184,6 +184,8 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 					statement.setString(index, (String) parameter);
 				} else if (parameter instanceof Integer) {
 					statement.setInt(index, (Integer) parameter);
+				} else if (parameter instanceof Float) {
+					statement.setFloat(index, (Float) parameter);
 				} else if (parameter instanceof Timestamp) {
 					statement.setTimestamp(index, (Timestamp) parameter);
 				}
