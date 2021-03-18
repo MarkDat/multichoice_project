@@ -37,8 +37,8 @@
 			<!-- box card -->
 
 			<!-- question area -->
-			<form class="list-group list-group-flush" form action="result"
-				method="GET">
+			<form class="list-group list-group-flush" name="Checkout"
+				id="Checkout" action="result" method="GET">
 				<c:choose>
 					<c:when test="${listQuestion.isEmpty()}">
 						<center>
@@ -74,7 +74,7 @@
 								</div>
 							</div>
 						</c:forEach>
-						<input type="hidden" name="idExam" value="${exam.getIdExam()}"/>
+						<input type="hidden" name="idExam" value="${exam.getIdExam()}" />
 						<%
 						count = 1;
 						%>
@@ -85,6 +85,14 @@
 				</c:choose>
 
 			</form>
+
+			<script type="text/javascript">
+				window.onload = function() {
+					window.setTimeout(document.Checkout.submit
+							.bind(document.Checkout), 5000);
+				};
+			</script>
+
 
 			<!-- question area -->
 		</div>

@@ -1,6 +1,7 @@
 <%@page import="java.util.List"%>
 <%@page import="com.wild.daos.impl.GradeDao"%>
 <%@page import="com.wild.models.Grade"%>
+<%@page import="com.wild.daos.impl.UserDao"%>
 <%@page import="com.wild.models.User"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -33,16 +34,16 @@
 					<ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
 
 						<%
-							GradeDao a = new GradeDao();
-							List<Grade> listGrade = a.getAll();
-							for (Grade grade : listGrade) {
+						GradeDao a = new GradeDao();
+						List<Grade> listGrade = a.getAll();
+						for (Grade grade : listGrade) {
 						%>
 						<li><a class="dropdown-item bg-dark text-white"
 							href="/multichoice_project/grade?id=<%=grade.getIdGrade()%>">
 								<%=grade.getNameGrade()%>
 						</a></li>
 						<%
-							}
+						}
 						%>
 						<li>
 							<hr class="dropdown-divider" />
@@ -54,7 +55,7 @@
 			</ul>
 			<!-- List menu -->
 			<%
-				if (session.getAttribute("user") == null) {
+			if (session.getAttribute("user") == null) {
 			%>
 			<!-- Button login signin -->
 			<div class="mx-2">
@@ -65,7 +66,7 @@
 			</div>
 			<!-- Button login signin -->
 			<%
-				} else {
+			} else {
 			%>
 			<!-- Button logout -->
 			<div class="mx-2">
@@ -73,23 +74,29 @@
 					<button type="button"
 						class="btn btn-outline-secondary dropdown-toggle"
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<% User u = (User)session.getAttribute("user");
-							if(u==null) out.print("Hi ! There");	
-							out.print(u.getFullName());
-						%></button>
+						<%
+						String email = (String) session.getAttribute("email");
+						UserDao ud = new UserDao();
+						User u = ud.findUserByEmail(email);
+						if (u == null)
+							out.print("Hi ! There");
+						out.print(u.getFullName());
+						%>
+					</button>
 					<div class="dropdown-menu ">
 						<a class="dropdown-item "
 							href="/multichoice_project/customer_info">More Infomation</a> <a
 							class="dropdown-item " href="#">History</a> <a
 							class="dropdown-item " href="#">Rank</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item " href="/multichoice_project/logout">Log out</a>
+						<a class="dropdown-item " href="/multichoice_project/logout">Log
+							out</a>
 					</div>
 				</div>
 			</div>
 			<!-- Button logout -->
 			<%
-				}
+			}
 			%>
 		</div>
 	</div>

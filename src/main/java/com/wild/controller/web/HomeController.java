@@ -1,7 +1,9 @@
 package com.wild.controller.web;
 
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,16 +16,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.wild.daos.impl.ExamDTODao;
 import com.wild.daos.impl.ExamDao;
 import com.wild.daos.impl.QuestionDao;
-
 import com.wild.daos.impl.SubjectDao;
-<<<<<<< HEAD
 import com.wild.daos.impl.UserDao;
 import com.wild.daos.impl.UserMarkDao;
-=======
->>>>>>> parent of 67ce972 (get data uer infor form web)
 import com.wild.models.Exam;
 import com.wild.models.Question;
 import com.wild.models.Subject;
+import com.wild.models.User;
 
 @Controller(value = "homeControllerOfWeb")
 public class HomeController {
@@ -41,26 +40,23 @@ public class HomeController {
 		SubjectDao sd = new SubjectDao();
 
 		UserMarkDao umd = new UserMarkDao();
-	//	RankUserDao rud = new RankUserDao();
+		// RankUserDao rud = new RankUserDao();
 //		UserDao ud  = new UserDao();
 //		List<Grade> grades = a.getAll();
-		//List<Question> q = qs.findListQuesByIdExam(1L);
-		//List<Exam> q = ex.findExamsBySubjectId(4L);
-		
+		// List<Question> q = qs.findListQuesByIdExam(1L);
+		// List<Exam> q = ex.findExamsBySubjectId(4L);
+
 //		for (RankUser q : rud.findAll()) {
 //			System.out.println(q.getName()+" "+q.getTotalMark());
 //		}
 //		
 //
 		List<Subject> listSup = sd.findAll();
-		
-		
+
 		mav.addObject("listSup", listSup);
 //		Exam objEx = new Exam(null, 3L, "Đề thi hóa phần hữu cơ");
 //		System.out.println("OK add ? "+ex.addNewExam(objEx));
-		
-		
-		
+
 		return mav;
 	}
 
@@ -148,27 +144,62 @@ public class HomeController {
 		return mav;
 	}
 
-	
-
 	@RequestMapping(value = "/customer_info", method = RequestMethod.GET)
 	public ModelAndView getCusInfoPage() {
 		ModelAndView mav = new ModelAndView("web/customer_info");
 		return mav;
 	}
 
-//	@RequestMapping(value = "/customer_info", method = RequestMethod.POST)
-//	public ModelAndView postCusInfoPage(@RequestParam(required = false, name = "email") String email, HttpServletRequest request,
-//			HttpServletResponse response) {
-//		ModelAndView mav = new ModelAndView("web/result");
-//		System.out.println(request.getParameter("email"));
-//		return mav;
-//	}
+	@RequestMapping(value = "/customer_info", method = RequestMethod.POST)
+	public ModelAndView postCusInfoPage(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		UserDao ud = new UserDao();
+		Long id = Long.parseLong(request.getParameter("id"));
+		String fullname = request.getParameter("fullname");
+		String email = request.getParameter("email");
+		String address = request.getParameter("address");
+		String phone = request.getParameter("phone");
+
+		ud.editInforByParameter(id, fullname, email, address, phone);
+
+		ModelAndView mav = new ModelAndView("web/customer_info");
+		return mav;
+	}
 
 	@RequestMapping(value = "/edit_password", method = RequestMethod.GET)
 	public ModelAndView editPassPage() {
 		ModelAndView mav = new ModelAndView("web/edit_password");
 		return mav;
 	}
-	
-	
+
+	@RequestMapping(value = "/edit_password", method = RequestMethod.POST)
+	public ModelAndView PostEditPassPage(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		ModelAndView mav = new ModelAndView("web/edit_password");
+
+		String email = request.getParameter("email");
+		UserDao ud = new UserDao();
+		User u = ud.findUserByEmail(email);
+		String oldpassreal = u.getPassword();
+		System.out.println(oldpassreal);
+
+		String oldpass = request.getParameter("oldpass");
+		String newpass = request.getParameter("newpass");
+		String renewpass = request.getParameter("renewpass");
+
+		if (oldpass == "" || newpass == "" || renewpass == "")
+			mav.addObject("msg", "Điền đầy đủ các trường");
+		else if (oldpass.equals(newpass))
+			mav.addObject("msg", "Mật khuẩu mới không được trùng với mật khuẩu cũ");
+		else if (!newpass.equals(renewpass))
+			mav.addObject("msg", "Nhập lại mật khuẩu mới sai");
+		else if (!oldpassreal.equals(oldpass))
+			mav.addObject("msg", "Mật khuẩu cũ không đúng");
+		else {
+			ud.changePass(u.getIdUser(), newpass);
+			mav.addObject("msg", "Oke rồi đó bạn iu");
+		}
+		return mav;
+	}
+
 }

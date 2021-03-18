@@ -47,6 +47,7 @@ public class LoginController extends HttpServlet {
 			
 			if (user.getStatus() == 0) {
 				session.setAttribute("user", user);
+				session.setAttribute("email", user.getEmail());
 				
 				return new ModelAndView("redirect:/trang-chu");
 			} else {

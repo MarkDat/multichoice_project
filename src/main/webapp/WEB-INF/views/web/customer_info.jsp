@@ -1,6 +1,9 @@
+<%@page import="com.wild.models.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="com.wild.models.User"%>
+<%@page import="com.wild.daos.impl.UserDao"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +16,11 @@
 
 	<!-- Content -->
 	<div class="col-lg-7  justify-content-end">
-
+		<%
+		String email = (String) session.getAttribute("email");
+		UserDao ud = new UserDao();
+		User u = ud.findUserByEmail(email);
+		%>
 		<!-- Edit info -->
 		<div class="card border-color mb-3">
 			<div class="card-header border-color box-color">
@@ -21,24 +28,29 @@
 			</div>
 			<div class="card-body">
 				<form class="px-3 my-3" action="customer_info" method="POST">
+					<input type="hidden" id="id" name="id" value="<%=u.getIdUser()%>">
 					<div class="row mb-3">
 						<label for="fullname" class="form-label col-3">Fullname</label> <input
-							readonly type="text" class="form-control col-8" id="fullname" />
-						<label class="required col" style="color: red">*</label>
+							readonly type="text" class="form-control col-8" id="fullname"
+							value="<%=u.getFullName()%>" name="fullname" /> <label
+							class="required col" style="color: red">*</label>
 					</div>
 					<div class="row mb-3">
 						<label for="email" class="form-label col-3">Email</label> <input
-							readonly type="email" class="form-control col-8" id="email" /> <label
+							readonly type="email" class="form-control col-8" id="email"
+							value="<%=u.getEmail()%>" name="email" /> <label
 							class="required col" style="color: red">*</label>
 					</div>
 					<div class="row mb-3">
 						<label for="address" class="form-label col-3">Address</label> <input
-							readonly type="text" class="form-control col-8" id="address" />
-						<label class="required col" style="color: red">*</label>
+							readonly type="text" class="form-control col-8" id="address"
+							value="<%=u.getAddress()%>" name="address" /> <label
+							class="required col" style="color: red">*</label>
 					</div>
 					<div class="row mb-3">
 						<label for="phone" class="form-label col-3">Phone</label> <input
-							readonly type="text" class="form-control col-8" id="phone" /> <label
+							readonly type="text" class="form-control col-8" id="phone"
+							value="<%=u.getPhone()%>" name="phone" /> <label
 							class="required col" style="color: red">*</label>
 					</div>
 					<div class="row mt-4">

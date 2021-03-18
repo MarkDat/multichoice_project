@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
 import com.wild.daos.IUserDao;
+import com.wild.mapper.UserMapper;
 import com.wild.models.Role;
 import com.wild.models.User;
 import com.wild.utils.DBConnectionUtil;
@@ -24,6 +25,15 @@ public class UserDao extends AbstractDAO<User> implements IUserDao {
 	}
 
 	@Override
+	public int editInforByParameter(Long iduser, String fullname, String email, String address, String phone) {
+		StringBuilder sql = new StringBuilder("UPDATE user_details SET ");
+		sql.append("fullname = ?,email = ?, address = ?,phone=?");
+		sql.append("WHERE iduser = ?");
+
+		return update(sql.toString(), fullname, email, address, phone, iduser);
+	}
+
+	@Override
 	public int editPass(User user) {
 		StringBuilder sql = new StringBuilder("UPDATE user_details SET ");
 		sql.append("pwd = ? ");
@@ -31,8 +41,17 @@ public class UserDao extends AbstractDAO<User> implements IUserDao {
 		return update(sql.toString(), user.getPassword(), user.getIdUser());
 	}
 
-	//Cái này dành cho form đăng ký user, cũng có thể dành cho cái add user bên admin nhưng t phải config lại 1 chút mới 
-	//được, hiện tại thì khoan dùng cho admin
+	@Override
+	public int changePass(Long iduser, String pwd) {
+		StringBuilder sql = new StringBuilder("UPDATE user_details SET ");
+		sql.append("pwd = ? ");
+		sql.append("WHERE iduser = ?");
+		return update(sql.toString(), pwd, iduser);
+	}
+
+	// Cái này dành cho form đăng ký user, cũng có thể dành cho cái add user bên
+	// admin nhưng t phải config lại 1 chút mới
+	// được, hiện tại thì khoan dùng cho admin
 	@Override
 	public int addNewUser(User user) {
 		final String sql = "INSERT INTO user_details(fullname, email, address, phone, username, pwd, status) "
@@ -84,7 +103,7 @@ public class UserDao extends AbstractDAO<User> implements IUserDao {
 		sql.append("WHERE u.iduser=su.iduser And su.idrole=r.idrole and ");
 		sql.append("email=? AND pwd = ?");
 
-		return query(sql.toString(), new UserMapper(), email,password).get(0);
+		return query(sql.toString(), new UserMapper(), email, password).get(0);
 	}
 
 	public boolean findByEmailAndPassword(User user) {
@@ -95,7 +114,7 @@ public class UserDao extends AbstractDAO<User> implements IUserDao {
 			pst = conn.prepareStatement(SELECT_USERS_SQL);
 			pst.setString(1, user.getEmail());
 			pst.setString(2, user.getPassword());
-			
+
 			System.out.println(pst);
 			rs = pst.executeQuery();
 			status = rs.next();
@@ -118,8 +137,8 @@ public class UserDao extends AbstractDAO<User> implements IUserDao {
 			rs = pst.executeQuery();
 			if (rs.next()) {
 				user = new User(rs.getLong("iduser"), rs.getString("fullname"), rs.getString("email"),
-						rs.getString("address"), rs.getString("phone"), rs.getString("username"), rs.getString("pwd"),rs.getInt("status"),
-						new Role());
+						rs.getString("address"), rs.getString("phone"), rs.getString("username"), rs.getString("pwd"),
+						rs.getInt("status"), new Role());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -140,8 +159,8 @@ public class UserDao extends AbstractDAO<User> implements IUserDao {
 			rs = pst.executeQuery();
 			if (rs.next()) {
 				user = new User(rs.getLong("iduser"), rs.getString("fullname"), rs.getString("email"),
-						rs.getString("address"), rs.getString("phone"), rs.getString("username"), rs.getString("pwd"),rs.getInt("status"),
-						new Role());
+						rs.getString("address"), rs.getString("phone"), rs.getString("username"), rs.getString("pwd"),
+						rs.getInt("status"), new Role());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
