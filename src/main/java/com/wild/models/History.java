@@ -2,7 +2,7 @@ package com.wild.models;
 
 import java.sql.Date;
 
-public class History {
+public class History  extends BaseModel{
 	private Long idUser;
 	private String tittleExam;
 	private float mark;

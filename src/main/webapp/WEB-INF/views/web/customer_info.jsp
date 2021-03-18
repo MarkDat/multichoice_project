@@ -4,6 +4,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="com.wild.models.User"%>
 <%@page import="com.wild.daos.impl.UserDao"%>
+<%@page import="com.wild.models.History"%>
+<%@page import="com.wild.daos.impl.HistoryDao"%>
+<%@page import="java.util.List"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,36 +91,22 @@
 								</tr>
 							</thead>
 							<tbody>
+								<%int count = 1;	
+								float sum = 0;
+								HistoryDao h = new HistoryDao();
+								List<History> listHistory = h.getListHistoryByIdUser(u.getIdUser());
+								for (History his : listHistory) {
+								%>
 								<tr>
-									<td>01</td>
-									<td>Toán học - đề số 1</td>
-									<td>8</td>
-									<td>2/1/2015</td>
+									<td><%=count++%></td>
+									<td><%=his.getTittleExam()%></td>
+									<td><%=his.getMark()%></td>
+									<td><%=his.getModifiedDate()%></td>
 								</tr>
-								<tr>
-									<td>02</td>
-									<td>Hóa học - đề số 1</td>
-									<td>7</td>
-									<td>2/1/2015</td>
-								</tr>
-								<tr>
-									<td>03</td>
-									<td>Vật ly - đề số 1</td>
-									<td>7</td>
-									<td>2/1/2015</td>
-								</tr>
-								<tr>
-									<td>04</td>
-									<td>Vật ly - đề số 1</td>
-									<td>7</td>
-									<td>2/1/2015</td>
-								</tr>
-								<tr>
-									<td>05</td>
-									<td>Vật ly - đề số 1</td>
-									<td>7</td>
-									<td>2/1/2015</td>
-								</tr>
+								<%sum += his.getMark();
+								}
+								
+								%>
 							</tbody>
 
 						</table>
@@ -141,8 +131,8 @@
 
 						<div class="">
 							<strong class="mx-1">Tổng điểm: <span
-								class="text-danger">22.0</span></strong> <strong class="mx-1">Điểm
-								trung bình: <span class="text-danger">7.33</span>
+								class="text-danger"><%=sum%></span></strong> <strong class="mx-1">Điểm
+								trung bình: <span class="text-danger"><%=sum/count%><%count = 1; %></span>
 							</strong>
 							<button class="btn btn-primary">Close</button>
 						</div>

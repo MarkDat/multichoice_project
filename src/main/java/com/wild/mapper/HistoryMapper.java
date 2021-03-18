@@ -14,7 +14,7 @@ public class HistoryMapper implements RowMapper<History>{
 			History hs = new History();
 			hs.setIdUser(rs.getLong("iduser"));
 			hs.setTittleExam(rs.getString("titleexam"));
-			hs.setTestDay(rs.getDate("testday"));
+			hs.setModifiedDate(rs.getDate("modifieddate"));
 			hs.setMark(rs.getFloat("mark"));
 			
 			

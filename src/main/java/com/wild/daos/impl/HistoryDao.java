@@ -10,9 +10,9 @@ import com.wild.models.History;
 public class HistoryDao extends AbstractDAO<History> implements IHistoryDao{
 
 	@Override
-	public List<History> getListHistoryByIdUser(int idUser) {
+	public List<History> getListHistoryByIdUser(Long idUser) {
 		StringBuffer sql = new StringBuffer("SELECT result.iduser,exam.titleexam,result.modifieddate,result.mark FROM ");
-		sql.append(" result, exam WHERE result.idexam=exam.idexam and iduser = ?");
+		sql.append(" result, exam WHERE result.idexam=exam.idexam and result.iduser = ?");
 		return query(sql.toString(), new HistoryMapper(),idUser);
 	}
 
