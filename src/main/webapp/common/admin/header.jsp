@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ page import="com.wild.models.User" %>
 <nav
 	class="navbar navbar-expand navbar-dark bg-dark static-top d-flex justify-content-between">
 	<div class="d-flex align-item-center">
@@ -13,7 +13,11 @@
 		</button>
 	</div>
 	<div>
-		<strong class=" text-light mr-1">Hi, []</strong>
+		
+		<%
+			 User u = (User)session.getAttribute("user");
+		%>
+		<strong class=" text-light mr-1">Hi, <%out.print(u.getFullName()); %></strong>
 		<a class="btn btn-outline-secondary text-light" href="<c:url value='/logout'/>"><i
 			class="ace-icon fa fa-power-off"></i> Log out</a>
 	</div>
