@@ -11,6 +11,6 @@ public interface IQuestionDao extends GenericDAO<Question>{
 		int editQues(Question qModel);
 		Question editQuesById(int idQ);
 		Question getIdExam(long idExam);
-		
+		int editResult(Question q);
 		int addListQuestionByIdExam(List<Question> lQ);
 }

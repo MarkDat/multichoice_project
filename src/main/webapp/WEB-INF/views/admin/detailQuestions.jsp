@@ -16,7 +16,7 @@
     <div class="card mb-3">
         <div class="card-header">
             <i class="fas fa-table"></i>
-            <div id="titleQuestion"> ID EXAM : ${getIdExam.idExam}</div>
+            <div id="titleQuestion"> ID EXAM : ${idExam}</div>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -48,7 +48,7 @@
                                         <li class="list-group-item list-group-item-danger">${question.rsD}</li>
                                     </ul>
                                 </td>
-                                <td>${question.rs}</td>
+                                <td id="result">${question.rs}</td>
                                 <td class="">
                                     <input type="submit" value="Edit" onclick="getDataExam(${question.idQ})"
                                         class="btn btn-warning mx-1" data-toggle="modal" data-target="#editModal" />
@@ -64,18 +64,16 @@
                 </table>
             </div>
             <div class="mt-2 mb-2 float-right">
-           		 <input type="file" id="fileUpload" class="mr-2" accept=".xls,.xlsx" /><br /><br />
-            	<input type="button" class="btn btn-primary mr-2" id="uploadExcel" Value="send file" />
-            	
-                <a class="btn btn-primary mr-2" href="<c:url value='/admin/tableExamList' />">Back</a>
+           		<input type="file" id="fileUpload" class="btn btn-primary mr-2" accept=".xls,.xlsx" /><br /><br />
+            	<input type="button" class="btn btn-primary mr-2" id="uploadExcel" Value="Send file" />           	
+            	<input type="submit" value="Add new" onclick="setDataExamId(${idExam})"
+                                        class="btn btn-primary " data-toggle="modal" data-target="#addModal" id="addNewButton"/>
+                <a class="btn btn-primary mx-1" href="<c:url value='/admin/tableExamList' />">Back</a>
                 
             </div>
 
 
             <!-- Chỗ nầy là form edit và question lun -->
-
-
-
             <!-- Modal edit-->
             <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
@@ -112,34 +110,35 @@
 
 
                                             <input type="text" class="form-control" placeholder="Câu A"
-                                                id="exampleRadios1" value="" />
+                                                id="exampleRadios1" value="" onchange="editOnchange(this.value)"/>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="rdoEdit" id="rsB"
                                                 value="option2" />
                                             <input type="text" class="form-control" placeholder="Câu B"
-                                                id="exampleRadios2" value="" />
+                                                id="exampleRadios2" value="" onchange="editOnchange(this.value)"/>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="rdoEdit" id="rsC"
                                                 value="option3" />
                                             <input type="text" class="form-control" placeholder="Câu C"
-                                                id="exampleRadios3" value="" />
+                                                id="exampleRadios3" value="" onchange="editOnchange(this.value)" />
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="rdoEdit" id="rsD"
                                                 value="option4" />
                                             <input type="text" class="form-control" placeholder="Câu D"
-                                                id="exampleRadios4" value="" />
+                                                id="exampleRadios4" value="" onchange="editOnchange(this.value)" />
                                         </div>
                                         <span class="text-warning">*Chọn đáp án đúng, những đáp án còn lại sẽ là đáp án
                                             sai</span>
-
+											<input class="form-check-input" type="hidden" name="rdoEdit" id="rs"
+                                                value="option5"  />
                                     </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" onclick="process()">OK</button>
+                                    <button type="button" class="btn btn-primary" onclick="process()" >OK</button>
                                 </div>
                             </form>
                         </div>
@@ -148,31 +147,85 @@
                 </div>
             </div>
             <!-- End modal -->
-			<script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.3/xlsx.full.min.js"></script>
- 
+            
+            
+             <!-- Modal ADD-->
+            <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">ADD NEW EXAM</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Mã câu hỏi: </label>
+                                    <div class="col-sm-8">
+                                        <label class="col-sm-8 col-form-label" id="maCauHoiAdd"></label>
+                                    </div>
+                                    <label class="col-sm-3 col-form-label">Mã đề: </label>
+                                    <div class="col-sm-8">
+                                        <label class="col-sm-8 col-form-label" id="maDeAdd"></label>
+                                    </div>
+                                    <label class="col-sm-3 col-form-label">Câu hỏi: </label>
+                                    <textarea class="col-sm-8 col-form-control" id="exampleFormControlTextarea1Add"
+                                        rows="3"></textarea>
+                                    <img src="#" alt="" style="">
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Phương án :</label>
+                                    <div class="col-sm-8">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="rdoAdd" id="rsAAdd"
+                                                value="option1" />
+                                            <input type="text" class="form-control" placeholder="Câu A"
+                                                id="exampleRadios1Add" value="" />
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="rdoAdd" id="rsBAdd"
+                                                value="option2" />
+                                            <input type="text" class="form-control" placeholder="Câu B"
+                                                id="exampleRadios2Add" value="" />
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="rdoAdd" id="rsCAdd"
+                                                value="option3" />
+                                            <input type="text" class="form-control" placeholder="Câu C"
+                                                id="exampleRadios3Add" value="" />
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="rdoAdd" id="rsDAdd"
+                                                value="option4" />
+                                            <input type="text" class="form-control" placeholder="Câu D"
+                                                id="exampleRadios4Add" value="" />
+                                        </div>
+                                        <span class="text-warning">*Chọn đáp án đúng, những đáp án còn lại sẽ là đáp án
+                                            sai</span>
+                                        <input class="form-check-input" type="hidden" name="rdoAdd" id="rsAdd"
+                                            value="option5" />
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" onclick="addProcess(addDataExam, ${idExam})">OK</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- End modal -->
+            
+            
+            
+             
+			<!-- SCRIPT -->
             <script>          
-                function handleCheckRadio(data) {
-                	$("#rsA").attr('checked', false);
-                	$("#rsB").attr('checked', false);
-                	$("#rsC").attr('checked', false);
-                	$("#rsD").attr('checked', false);
-                	const rs = data.rs;
-                    const entries = Object.entries(data).slice(6,11);
-                    let result = "";
-                    for (const [key, value] of entries) {
-                            if (value === rs) {
-                                result = "#" + key;
-                                $(result).attr('checked', true);
-                                console.log(result);
-                                result = "";
-                                break;
-                        	}
-
-
-                    }
-                }
-
-
                 function getDataExam(idQ) {
                     $.ajax({
                         type: "GET",
@@ -198,6 +251,8 @@
                             rsB.value = data.rsB;
                             rsC.value = data.rsC;
                             rsD.value = data.rsD;
+                            document.getElementById('result').innerHTML = data.rs;
+                            
                             setTimeout(() => {
                             	handleCheckRadio(data);
                             }, 500); 
@@ -209,6 +264,29 @@
                         }
                     });
                 }
+                
+                
+                function handleCheckRadio(data) {
+                	$("#rsA").attr('checked', false);
+                	$("#rsB").attr('checked', false);
+                	$("#rsC").attr('checked', false);
+                	$("#rsD").attr('checked', false);
+                	const rs = data.rs;
+                    const entries = Object.entries(data).slice(6,11);
+                    let result = "";
+                    for (const [key, value] of entries) {
+                            if (value === rs) {
+                                result = "#" + key;
+                                $(result).attr('checked', true);
+                                console.log(result);
+                                result = "";
+                                break;
+                        	}
+
+
+                    }
+                }
+                
 
                 function checkChecked(){
                 	const checkbox = document.querySelector('input[name="rdoEdit"]:checked');
@@ -246,6 +324,8 @@
                 			console.log("ERROR: ", e);
                 		}
                 	});
+                	
+                	
                 }
 
 
@@ -281,7 +361,23 @@
                 	examListEdit(postDataExam);
                 }
                 
-            
+                function findCheckedId(){
+                	const checkbox = document.querySelector('input[name="rdoEdit"]:checked');
+                	return checkbox.id;
+                	
+                }
+                
+                function editOnchange(ish) {
+                	const id = findCheckedId();
+                	document.getElementById(id).value = ish;
+                	
+                	
+                }
+                
+            	
+                
+                
+                /* DELETE */    
                 function deleteDataExam(idQ) {
                 	$.ajax({
                 		type: "POST",
@@ -339,9 +435,8 @@
             	   
                }
                
-
                
-               
+      
                 
                
                /* Phần của Đạt */
@@ -431,6 +526,97 @@
            			}
            		});
            	}
+               
+               
+               
+           /* ADD NEW AXAM */
+           		function checkCheckedAdd(){
+                	const checkbox = document.querySelector('input[name="rdoAdd"]:checked');
+                	return checkbox.value;
+                	
+                }
+           
+           
+               function setDataExamId(idExam) {
+                   document.getElementById('maDeAdd').innerHTML = idExam;
+                   
+               }               
+               
+               function addDataExam(idExam) {
+               	$.ajax({
+               		type: "POST",
+               		contentType: "application/json;charset=utf-8",
+               		url: "addNewExam",
+               		data: JSON.stringify({
+               			"idExam" : idExam,
+               			"content" : document.getElementById('exampleFormControlTextarea1Add').value,
+            			"rsA" : exampleRadios1Add.value,
+            			"rsB" : exampleRadios2Add.value,
+            			"rsC" : exampleRadios3Add.value,
+            			"rsD" : exampleRadios4Add.value,
+            			"rs" : checkCheckedAdd()
+               		}),
+               		dataType: 'json',
+               		timeout: 100000,
+               		success: function (data) {
+               			if (data.status == 'SUCCEED')
+               				console.log("Succeed");
+
+               		},
+               		error: function (e) {
+               			console.log("LOIII")
+               			console.log("ERROR: ", e);
+               		}
+               	});
+               }
+               
+               
+               
+               function examListAdd(callback, idExam) {
+               	Swal.fire({
+               		title: 'You are adding exam',
+               		text: "You won't be able to revert this!",
+               		icon: 'info',
+               		showCancelButton: true,
+               		confirmButtonColor: '#3085d6',
+               		cancelButtonColor: '#d33',
+               		confirmButtonText: 'Add'
+               	}).then((result) => {
+               		if (result.isConfirmed) {
+               			callback(idExam);
+               			Swal.fire({
+               				position: 'top-end',
+               				icon: 'success',
+               				title: 'Your work has been saved',
+               				showConfirmButton: false,
+               				timer: 1500,
+               			});
+               			setTimeout(() => {
+               				location.reload();
+               			}, 1600);
+
+
+               		}
+               	})
+               }
+
+              function addProcess(f, idExam){
+            	  updateRadioValues()
+            	  examListAdd(f, idExam);
+           	   
+              }
+              
+              function updateRadioValues(){
+                  rsAAdd.value = document.querySelector('input[id="exampleRadios1Add"]').value;
+                  rsBAdd.value = document.querySelector('input[id="exampleRadios2Add"]').value;
+                  rsCAdd.value = document.querySelector('input[id="exampleRadios3Add"]').value;
+                  rsDAdd.value = document.querySelector('input[id="exampleRadios4Add"]').value;
+            	  
+              }
+           
+           
+               
+
                
             </script>
 

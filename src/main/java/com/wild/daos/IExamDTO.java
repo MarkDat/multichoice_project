@@ -9,4 +9,5 @@ public interface IExamDTO extends GenericDAO<ExamDTO>{
 	List<ExamDTO> findExamsDTOAll();
 	List<ExamDTO> findExamsBySubject(Long idS);
 	List<ExamDTO> findExamsByGrade(Long idG);
+	long addNewExam(ExamDTO examDTO);
 }
