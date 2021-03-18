@@ -30,14 +30,16 @@ public class ExamDao extends AbstractDAO<Exam> implements IExamDao{
 	}
 
 	@Override
-	public long addNewExam(Exam ex) {
-		StringBuilder sql = new StringBuilder("INSERT INTO exam (");
-		sql.append("idsubject,createddate,modifieddate,titleexam)");
-		sql.append(" VALUES(?,?,?,? )");
-		
-		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
-		Date date = new Date(System.currentTimeMillis());
-		return insert(sql.toString(), ex.getIdSubject(),formatter.format(date),formatter.format(date),ex.getTitleExam());
+	public int addNewExam(Exam ex) {
+//		StringBuilder sql = new StringBuilder("INSERT INTO exam (");
+//		sql.append("idsubject,createddate,modifieddate,titleexam)");
+//		sql.append(" VALUES(?,?,?,? )");
+//		
+//		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
+//		Date date = new Date(System.currentTimeMillis());
+//		return insert(sql.toString(), ex.getIdSubject(),formatter.format(date),formatter.format(date),ex.getTitleExam());
+//	
+		return 0;
 	}
 
 	
@@ -46,12 +48,6 @@ public class ExamDao extends AbstractDAO<Exam> implements IExamDao{
 	public Exam findExamById(Long idE) {
 		String sql = "SELECT * FROM `exam` WHERE idexam=?";
 		return query(sql, new ExamMapper(),idE).get(0);
-	}
-
-	@Override
-	public long deleteExamByIdExam(long idExam) {
-		String sql = "DELETE FROM `exam` WHERE idexam=?";
-		return update(sql, idExam);
 	}
 	
 

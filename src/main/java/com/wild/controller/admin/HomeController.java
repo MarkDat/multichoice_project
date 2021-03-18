@@ -64,7 +64,7 @@ public class HomeController {
 		ExamDTODao listExam = new ExamDTODao();
 		List<ExamDTO> list = listExam.findExamsDTOAll();
 		SubjectDao listDistinctSubject = new SubjectDao();
-		List<Subject> listSubjectDistinct = listDistinctSubject.listSubject();
+		List<Subject> listSubjectDistinct = listDistinctSubject.listDistinctSubject();
 
 		mav.addObject("listSubjectDistinct", listSubjectDistinct);
 		mav.addObject("list", list);

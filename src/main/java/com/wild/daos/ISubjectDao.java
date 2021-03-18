@@ -7,6 +7,6 @@ import com.wild.models.Subject;
 public interface ISubjectDao extends GenericDAO<Subject>{
 	List<Subject> findAll();
 	List<Subject> findSubjectsByIdGrade(Long idG);
-	List<Subject> listSubject();
+	List<Subject> listDistinctSubject();
 	
 }

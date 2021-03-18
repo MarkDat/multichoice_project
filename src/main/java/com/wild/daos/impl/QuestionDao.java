@@ -93,17 +93,6 @@ public class QuestionDao extends AbstractDAO<Question> implements IQuestionDao{
 		return count;
 	}
 
-	@Override
-	public int editResult(Question q) {
-		StringBuilder sql = new StringBuilder("UPDATE question SET ");
-		sql.append("modifieddate = ?, rs=?");
-		sql.append("WHERE idq = ?");
-		
-		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
-		Date date = new Date(System.currentTimeMillis());
-		return update(sql.toString(),formatter.format(date), q.getRs(), q.getIdQ());
-	}
-
 	
 	
 }
